@@ -1,7 +1,13 @@
 .table-responsive {
-    overflow: hidden;
+    overflow: hidden;]
+    background-color: #fff;
 }
 .bordered {
     padding: 10px 15px;
     border: 1px solid #ddd;
+}
+
+.add-new {
+    width: 100%;
+    margin-bottom: 10px;
 }

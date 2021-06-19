@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
   alerts = this.defaultAlerts;
 
 
-  constructor(private dataService: DataService, private fb: FormBuilder) { 
+  constructor(private dataService: DataService, private fb: FormBuilder ) { 
     this.addNewAreaForm = this.fb.group({
       listAreas: this.fb.array([])
     })
@@ -109,5 +109,4 @@ export class ListComponent implements OnInit {
   onClosed(dismissedAlert: any): void {
     this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
   }
-
 }

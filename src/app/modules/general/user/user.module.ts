@@ -4,12 +4,14 @@ import { UserRoutingModule } from './user-routing.module';
 
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    LandingPageComponent
   ],
   imports: [
     CommonModule,

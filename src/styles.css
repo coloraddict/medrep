@@ -180,6 +180,27 @@ section.hide {
     clear: both;
 }
 
+.no-padding {
+    padding: 0;
+}
+
+.back-to-landingpage {
+    font-size: 30px;
+}
+
+.back-to-landingpage i {
+    color: #47126b;
+}
+
+.card.custom {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+i {
+    color: #47126b;
+}
+
 /* @media only screen and (max-width: 768px) {
     .container {
         width: 500px;

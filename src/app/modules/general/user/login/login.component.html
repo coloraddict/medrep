@@ -7,7 +7,7 @@
                     <h1 class="text">MEDRep</h1>
                     <input type="text" placeholder="Username" class="user_credential" />
                     <input type="password" placeholder="Password" class="user_credential" />
-                    <a href="#" routerLinkActive="active" routerLink="/login-page" class="loginButton" (click)="onLogin()">LOGIN</a>
+                    <a href="#" routerLinkActive="active" routerLink="/login-page" class="loginButton"  [routerLink]="['/user/landing-page']">LOGIN</a>
                     <div class="forgot">Forgot Password?</div>
                 </div>
             </div>

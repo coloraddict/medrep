@@ -1,0 +1,106 @@
+<!-- <header></header> -->
+<div class="overlay" *ngIf="ddOverlay"></div>
+<!-- <div class="container"> -->
+
+    <div class="row">
+        <div class="col-xs-12 no-padding">
+            <ul class="services">
+                <li>
+                    <!-- <img src="assets/images/calendar.png" alt=""> -->
+                    <i class="fa fa-calendar menu-icons"></i>
+                    <h3 class="service-name">Todays Schedule</h3>
+                </li>
+                <li>
+                    <i class="fa fa-file menu-icons"></i>
+                    <!-- <img src="assets/images/timeline_64.png" alt=""> -->
+                    <h3 class="service-name">Tour Planner</h3>
+                </li>
+                <li>
+                    <i class="fa fa-user-md menu-icons"></i>
+                    <!-- <img src="assets/images/my_doctors_64.png" alt=""> -->
+                    <h3 class="service-name">My Doctors</h3>
+                </li>
+                <li>
+                    <i class="fa fa-bullhorn menu-icons"></i>
+                    <!-- <img src="assets/images/campaign_64.png" alt=""> -->
+                    <h3 class="service-name">Campaign</h3>
+                </li>
+                <li>
+                    <i class="fa fa-print menu-icons"></i>
+                    <!-- <img src="assets/images/reports_64.png" alt=""> -->
+                    <h3 class="service-name">Reports</h3>
+                </li>
+                <li>
+                    <i class="fa fa-id-card menu-icons"></i>
+                    <!-- <img src="assets/images/my_chemist_64.png" alt=""> -->
+                    <h3 class="service-name">My Chemist</h3>
+                </li>
+                <li>
+                    <i class="fa fa-cog menu-icons"></i>
+                    <!-- <img src="assets/images/settings_64.png" alt=""> -->
+                    <h3 class="service-name">User Settings</h3>
+                </li>
+                <li [routerLink]="['/area']">
+                    <i class="fa fa-snowflake-o menu-icons" aria-hidden="true"></i>
+                    <!-- <img src="assets/images/settings_64.png" alt=""> -->
+                    <h3 class="service-name">Area Master</h3>
+                </li>
+                <li [routerLink]="['/medicines']">
+                    <i class="fa fa-envira menu-icons" aria-hidden="true"></i>
+                    <!-- <img src="assets/images/settings_64.png" alt=""> -->
+                    <h3 class="service-name">Medicine Master</h3>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+
+    <!-- <div class="row">
+        <div class="col-xs-12 text-center content page-header">
+            <div class="card">
+                <div class="back">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </div>
+                <div class="left-block">
+                    <span><img src="assets/images/sales-report.png" alt=""></span>
+                </div>
+                <div class="right-block">
+                    <h1>Daily Sales</h1>
+                    <p>Sunday: Jan 27, 2019</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- <div class="row">
+        <div class="col-xs-12 content">
+            <div class="card">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <app-dropdown [list]="locations" [label]="location_label" (locationChange)="onSelection($event)"></app-dropdown>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12">
+                        <app-radiogroup [options]="customers" (selectedRadio)="onOptionSelect($event)"></app-radiogroup>
+                    </div>
+                </div>
+                <app-dropdown [list]="distributors" [label]="distributor_label" *ngIf="isDistributorSelected"></app-dropdown>
+                <app-dropdown [list]="doctors" [label]="doctor_label" *ngIf="isDoctorSelected"></app-dropdown>
+                <hr>
+            </div>
+        </div>
+    </div> -->
+    
+<!-- </div> -->
+<footer></footer>
+<!-- <div class="modal-popup" id="modal-popup" (click)="hidePopup($event)">
+    <div class="modal-content">
+        <button (click)="increment()"><img src="assets/images/plus.png" alt=""></button>
+        <input type="text" value={{count}} />
+        <button (click)="decrement()"><img src="assets/images/minus.png" alt=""></button>
+    </div>
+</div> -->

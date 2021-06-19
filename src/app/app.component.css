@@ -1,0 +1,26 @@
+header {
+    padding: 15px 15px 20px 15px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+}
+header img {
+    width: 30px;
+}
+
+header .actions {
+    float: right;
+    padding-right: 10px;
+}
+
+header .actions a {
+    margin-left: 15px;
+}
+
+header .actions a i {
+    color: #47126b;
+}
+
+header .actions .notification {
+    font-size: 30px;
+}

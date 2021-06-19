@@ -3,15 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { 
-    path: '', loadChildren: () => import('./modules/general/user/user.module') 
+    path: '', redirectTo: 'user', pathMatch: 'full'
+  },
+  { 
+    path: 'user', loadChildren: () => import('./modules/general/user/user.module') 
       .then(mod => mod.UserModule)
   },
   {
-    path: 'admin/area', loadChildren: () => import('./modules/admin/area/area.module')
+    path: 'area', loadChildren: () => import('./modules/admin/area/area.module')
       .then(mod => mod.AreaModule)
   },
   {
-    path: 'admin/medicines', loadChildren: () => import('./modules/admin/medicine-master/medicine-master.module')
+    path: 'medicines', loadChildren: () => import('./modules/admin/medicine-master/medicine-master.module')
       .then(mod => mod.MedicineMasterModule)
   }
 ];
