@@ -1,1 +1,195 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; overflow: hidden; font-family: robotoregular; }
+body { margin: 0; padding:0; font-family: robotoregular, "Helvetica Neue", sans-serif; }
+
+:root {
+    font-family: roboto!important;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+a, a:focus {
+    text-decoration: none;
+}
+
+ul, ul li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 5px 0;
+    font-weight: normal;
+    text-shadow: none;
+}
+
+h1 {
+    font-size: 25px;    
+}
+
+h2 {
+    font-size: 20px;  
+}
+
+h3 {
+    font-size: 15px;  
+}
+
+h4 {
+    font-size: 12px;  
+}
+
+h5 {
+    font-size: 10px;  
+}
+
+.fa {
+    /* color: #fff; */
+    /* color: #646464; */
+}
+
+input[type=text], input[type=password] {
+    outline: none;
+}
+
+.container {
+    background: #f4f9fd;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.card {
+    display: block;
+    min-height: 20px;
+    padding: 10px;
+    background: #fff;
+    /* box-shadow: 0 4px 8px -3px rgba(0,0,0,0.5); */
+    border-radius: 5px;
+    transition: 0.3s;
+    margin: 5px 0;
+}
+
+.content {
+    padding: 5px 5px 0 5px;
+}
+
+.back {
+    font-size: 20px;
+    text-align: left;
+    padding-left: 5px;
+    margin: 5px 0;
+}
+
+.back-arrow {
+    display: block;
+    font-size: 20px;
+    color: #000;
+}
+
+.tab-container .tabs {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.tab-container .tabs input {
+    display: none;
+}
+
+.tab-container .tabs label {
+    padding: 10px 0 15px 0;
+    flex-grow: 1;
+    margin: 0 0 -1px;
+    /* padding: 10px; */
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    color: #999;
+    border: 1px solid transparent;
+}
+
+.tab-container .tabs input:checked + label {
+    color: #424242;
+    font-weight: 500;
+}
+
+section {
+    display: none;
+}
+
+section.hide {
+    display: none;
+}
+
+.tab-container #tab1:checked #tab1-content,
+.tab-container #tab2:checked #tab2-content,
+.tab-container #tab3:checked #tab3-content,
+.tab-container #tab4:checked #tab4-content, 
+.tab-container #tab5:checked #tab5-content,
+.tab-container #tab6:checked #tab6-content {
+	  display: block;
+}
+
+.tab-container #tab1-content {
+    display: block;
+}
+
+.tab-content li a {
+    display: block;
+    padding: 10px 0;
+    font-size: 12px;
+    font-weight: 300;
+    color: #424242;
+    text-transform: capitalize; 
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.tab-content li a span {
+    float: right;
+}
+
+/* MODAL POPUP */
+.modal-dialog .modal-header {
+    padding: 10px 15px;
+}
+
+.modal-dialog .modal-title {
+    font-size: 13px;
+    font-weight: 500;
+} 
+
+.modal-backdrop.show {
+    opacity: 1!important;
+    background-color: rgba(255, 255, 255, .8);
+}
+
+.modal-header .close {
+    outline: none;
+    padding: 10px;
+}
+
+.clearfix {
+    float: none;
+    clear: both;
+}
+
+/* @media only screen and (max-width: 768px) {
+    .container {
+        width: 500px;
+        margin: 0 auto;
+    }
+   
+} */
+
+@media only screen and (max-width: 1920px) and (min-width: 500px) {
+    .container {
+        width: 500px!important;
+    }
+}
