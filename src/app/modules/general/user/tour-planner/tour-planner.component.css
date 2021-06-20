@@ -1,0 +1,41 @@
+.calendar-days {
+    font-size: 12px;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 3px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .calendar-days .previous-month, .calendar-days .next-month{
+    color: grey;
+  }
+
+  .calendar-days .in-month {
+    background-color: #f00;
+  }
+  
+  .calendar-days .weekend {
+    background-color: rgb(245, 245, 245);
+  }
+
+  .flex-container {
+    display: -webkit-flex;
+    display: flex;
+  }
+  
+  .flex-center {
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+  
+  .hours {
+    font-size: 10px;
+    position: absolute;
+    top: -15px;
+    left: -30px;
+  }

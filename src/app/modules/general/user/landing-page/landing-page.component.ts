@@ -87,7 +87,6 @@ export class LandingPageComponent implements OnInit{
 	decrement(){}
 
 	ngOnInit(){
-		console.log("here");		
 		// let area = this.dataService.getArea().subscribe(
 		// 	(data) => {
 		// 		this.locations = data['records'];

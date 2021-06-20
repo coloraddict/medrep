@@ -10,7 +10,7 @@
                     <i class="fa fa-calendar menu-icons"></i>
                     <h3 class="service-name">Todays Schedule</h3>
                 </li>
-                <li>
+                <li [routerLink]="['/user/tour-planner']">
                     <i class="fa fa-file menu-icons"></i>
                     <!-- <img src="assets/images/timeline_64.png" alt=""> -->
                     <h3 class="service-name">Tour Planner</h3>
@@ -41,14 +41,19 @@
                     <h3 class="service-name">User Settings</h3>
                 </li>
                 <li [routerLink]="['/area']">
-                    <i class="fa fa-snowflake-o menu-icons" aria-hidden="true"></i>
+                    <i class="fa fa-asterisk menu-icons" aria-hidden="true"></i>
                     <!-- <img src="assets/images/settings_64.png" alt=""> -->
                     <h3 class="service-name">Area Master</h3>
                 </li>
                 <li [routerLink]="['/medicines']">
-                    <i class="fa fa-envira menu-icons" aria-hidden="true"></i>
+                    <i class="fa fa-asterisk menu-icons" aria-hidden="true"></i>
                     <!-- <img src="assets/images/settings_64.png" alt=""> -->
                     <h3 class="service-name">Medicine Master</h3>
+                </li>
+                <li [routerLink]="['/patch']">
+                    <i class="fa fa-asterisk menu-icons" aria-hidden="true"></i>
+                    <!-- <img src="assets/images/settings_64.png" alt=""> -->
+                    <h3 class="service-name">Patch Master</h3>
                 </li>
             </ul>
             <div class="clearfix"></div>

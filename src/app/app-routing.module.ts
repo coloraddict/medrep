@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'medicines', loadChildren: () => import('./modules/admin/medicine-master/medicine-master.module')
       .then(mod => mod.MedicineMasterModule)
+  },
+  {
+    path: 'patch', loadChildren: () => import('./modules/admin/patch-master/patch-master.module')
+      .then(mod => mod.PatchMasterModule)
   }
 ];
 

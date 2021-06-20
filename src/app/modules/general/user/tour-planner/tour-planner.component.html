@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-12">
+        <a class="back-to-landingpage" [routerLink]="['/user/landing-page']"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+        <p></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <button (click)="switchView('week')">Week</button>
+        <button (click)="switchView('month')">Monthly</button>
+    </div>
+</div>
+<p></p>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <div class="flex-container flex-center">
+            <button (click)="previous()"><i class="fa fa-caret-left" aria-hidden="true"></i></button>&nbsp;
+            <span><b>{{date.format('MMMM ')}}{{date.format('YYYY ')}}</b></span>
+            <span class="material-icons" style="padding: 7px; font-size: 20px;">
+                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+            </span>
+            <button (click)="next()"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12"  style="overflow-y: scroll;">
+        <ng-container [ngSwitch]="mode">
+            <ng-container *ngSwitchCase="'month'">
+              <div *ngFor="let calendarItem of calendar; let i = index">
+                <div class="flex-container flex-center">
+                  <div
+                    class="calendar-days"
+                    [class.weekend]="day.isWeekend"
+                    *ngFor="let day of calendarItem"
+                  >
+                    <div *ngIf="i === 0">{{day.dayName}}</div>
+                    {{day.day}}
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          
+            <ng-container *ngSwitchCase="'week'">
+              <div *ngFor="let calendarItem of calendar; let i = index">
+                <div class="flex-container flex-center">
+                  <div
+                    class="calendar-days"
+                    [class.weekend]="day.isWeekend"
+                    *ngFor="let day of calendarItem; let dayIndex = index;"
+                  >
+                    <div *ngIf="i === 0">
+                      {{day.dayName}}
+                      <div>{{day.day}}</div>
+                    </div>
+                    <div class="hours" *ngIf="dayIndex === 0 && i > 0" style="margin-right: 30px;">{{day.hour + ":00"}}</div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+    </div>
+</div>

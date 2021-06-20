@@ -1,0 +1,17 @@
+.table-responsive {
+    overflow: hidden;
+}
+.bordered {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+}
+
+.long-list {
+    height: 600px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.add-new {
+    width: 100%;
+    margin-bottom: 10px;
+}

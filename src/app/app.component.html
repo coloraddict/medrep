@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="showHead">
         <div class="col-md-12">
             <header>
                 <a href="#"><img src="assets/images/brand-logo.png"></a>                   
@@ -13,6 +13,7 @@
     <div class="row">
         <div class="col-md-12">
             <router-outlet></router-outlet>
+            <router-outlet name='login'></router-outlet>
         </div>
     </div>
 </div>

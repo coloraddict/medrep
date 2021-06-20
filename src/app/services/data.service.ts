@@ -24,6 +24,8 @@ export class DataService {
     return this.http.get("http://192.168.1.205:8080/delete?id=" + id);
   }
 
+
+  // MEDICINES
   getMedicines(){
     return this.http.get("http://192.168.1.205:8080/medicines")
   }
@@ -39,4 +41,22 @@ export class DataService {
   deleteMedicine(id: any) {
     return this.http.get("http://192.168.1.205:8080/deleteMedicine?id=" + id);
   }
+
+  // PATCHES
+  getPatches(){
+    return this.http.get("http://192.168.1.205:8080/patches")
+  }
+
+  addPatch(payload: any){
+    return this.http.post("http://192.168.1.205:8080/addPatch", payload);
+  }
+
+  updatePatch(payload: any){
+    return this.http.post("http://192.168.1.205:8080/updatePatch", payload);
+  }
+
+  deletePatch(id: any) {
+    return this.http.get("http://192.168.1.205:8080/deletePatch?id=" + id);
+  }
+
 }
