@@ -1,0 +1,41 @@
+.table-responsive {
+    overflow: hidden;
+}
+.bordered {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+}
+
+.long-list {
+    height: 600px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.add-new {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.photo {
+    width: 30%;
+    float: left;
+}
+
+.photo img {
+    width: 100%;
+    border-radius: 50%;    
+}
+
+.details {
+    width: 50%;
+    float: left;
+    margin-left: 15px;
+}
+
+.doctor-name {
+    color: #47126b;
+}
+
+.doctor-card.card {
+    cursor: pointer;
+}

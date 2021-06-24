@@ -14,7 +14,7 @@ import { PatchListComponent } from './patch-list/patch-list.component';
     CommonModule,
     PatchMasterRoutingModule,
     ReactiveFormsModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
   ]
 })
 export class PatchMasterModule { }

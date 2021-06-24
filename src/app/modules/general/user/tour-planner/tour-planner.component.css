@@ -39,3 +39,29 @@
     top: -15px;
     left: -30px;
   }
+  .dropdown-item {
+    cursor: pointer;
+  }
+
+  .slot-container {
+    width: 100px;
+    padding: 5px;
+  }
+
+  .pills {
+    display: inline-block;
+    width: 100px;
+    font-size: 12px;
+    text-transform: capitalize;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    text-align: center;
+}
+
+.pills:hover {
+    color: #fff!important;
+    background-color: #47126b;
+}

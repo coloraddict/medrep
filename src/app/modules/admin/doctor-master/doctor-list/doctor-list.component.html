@@ -1,0 +1,243 @@
+<div class="card custom">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <a class="back-to-landingpage" [routerLink]="['/user/landing-page']"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+                <p></p>
+            </div>
+        </div>
+        <div *ngFor="let alert of alerts">
+            <alert [type]="alert.type" [dismissible]="dismissible" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
+        </div>
+        <div class="table-responsive">
+            <div class="row">
+                <div class="col-sm-8"><h2>Doctor <b>Master</b></h2></div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-info add-new" (click)="openModal(template)"><i class="fa fa-plus"></i> Add New</button>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col bordered"><b>Id</b></div>
+                <div class="col bordered"><b>Name</b></div>
+                <div class="col bordered text-center"><b>Actions</b></div>
+            </div> -->
+            <div class="long-list scrollbar scrollbar-black bordered-black square thin">
+                <div class="row">
+                    <div class="card doctor-card" *ngFor="let doctor of  doctor_list; let i = index" (click)="showDoctorDetails()">
+                        <div class="card-body">
+                            <div class="photo">
+                                <!-- <img src="assets/images/male-doctor.png" alt=""> -->
+                                <img [src]="doctor.gender==='Male' ? 'assets/images/male-doctor.png' : 'assets/images/female-doctor.png'" alt="">
+                            </div>
+                            <div class="details">
+                                <div><rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"></rating></div>
+                                <h2 class="doctor-name">{{ doctor.firstName + " " + doctor.lastName }}</h2>
+                                <h5>{{ doctor.degree }}</h5>
+                                <h3>{{ doctor.speciality }}</h3>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="long-list scrollbar scrollbar-black bordered-black square thin">
+                <div class="row force-overflow" *ngFor="let doctor of  doctor_list; let i = index">
+                    <div class="col bordered">{{ doctor.id }}</div>
+                    <div class="col bordered">{{ doctor.firstName + " " + doctor.lastName }}</div>
+                    <div class="col bordered text-center">
+                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil" aria-hidden="true" (click)="onUpdateDoctor(i)" style="cursor: pointer;"></i></a>&nbsp;&nbsp;
+                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete(i)" style="cursor: pointer;"></i></a>
+                    </div>
+                </div>
+            </div> -->
+            <form [formGroup]="addNewDoctorForm">
+                <div formArrayName="listDoctors">
+                    <div *ngFor="let doctor of listDoctors.controls; let i=index">                            
+                        <div [formGroupName]="i">
+                            <div class="row">
+                                <div class="col-md-4"><input type="text" formControlName="id" placeholder="Doctor Id"></div>
+                                <div class="col-md-4"><input type="text" formControlName="name" placeholder="Doctor Name"></div>
+                                <div class="col-md-4 text-center">
+                                    <a class="add" title="Add" data-toggle="tooltip" *ngIf="addClicked===true || editClicked ===true" (click)="submitNewDoctor()">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                    &nbsp;&nbsp;
+                                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>    
+</div>
+
+<!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button> -->
+ 
+<ng-template #template>
+    <form name="my-form" [formGroup]="newDoctorForm" (ngSubmit)="submitNewDoctor()">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">New Doctor</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="card">
+                <!-- <div class="card-header">New Doctor</div> -->
+                <div class="card-body scrollbar scrollbar-black bordered-black square thin">
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="id" class="col-md-12 col-form-label text-md-right">Id</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="id" class="form-control" name="id" formControlName="id">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="first_name" class="col-md-12 col-form-label text-md-right">First Name</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="first_name" class="form-control" name="first-name" formControlName="firstName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="middle_name" class="col-md-12 col-form-label text-md-right">Middle Name</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="middle_name" class="form-control" name="middle-name" formControlName="middleName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="last_name" class="col-md-12 col-form-label text-md-right">Last Name</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="last_name" class="form-control" name="last-name" formControlName="lastName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="address1" class="col-md-12 col-form-label text-md-right">Address 1</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="address1" class="form-control" name="address1" formControlName="address1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="address2" class="col-md-12 col-form-label text-md-right">Address 2</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="address2" class="form-control" name="address2" formControlName="address2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="address3" class="col-md-12 col-form-label text-md-right">Address 3</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="address3" class="form-control" name="address3" formControlName="address3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="dob" class="col-md-12 col-form-label text-md-right">Date of Birth</label>
+                                <div class="col-md-12">
+                                    <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker formControlName="dob">
+                                </div>
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="email" class="col-md-12 col-form-label text-md-right">Email</label>
+                                <div class="col-md-12">
+                                    <input type="email" id="email" class="form-control" name="email" formControlName="email">
+                                </div>
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="dob" class="col-md-12 col-form-label text-md-right">Gender</label>
+                                <div class="row">
+                                    <div class="col-md-4">                                    
+                                        <input type="radio" class="custom-control-input" id="male" value="Male" formControlName="gender">
+                                        <label class="custom-control-label" for="male">&nbsp;Male</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="radio" class="custom-control-input" id="female" value="Female" formControlName="gender">
+                                        <label class="custom-control-label" for="female">&nbsp;Female</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="dob" class="col-md-12 col-form-label text-md-right">Area</label>
+                                <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="area" (change)="onAreaChange($event)">
+                                    <option selected>Select</option>
+                                    <option value="{{area.id}}" *ngFor="let area of area_list">{{ area.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="dob" class="col-md-12 col-form-label text-md-right">Patch</label>
+                                <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="patch">
+                                    <option selected>Select</option>
+                                    <option value="{{ patch.id }}" *ngFor="let patch of patch_list">{{ patch.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="experience" class="col-md-12 col-form-label text-md-right">Experience</label>
+                                <div class="col-md-12">
+                                    <input type="number" id="experience" class="form-control" formControlName="experience">
+                                </div>
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="dob" class="col-md-12 col-form-label text-md-right">Degree</label>
+                                <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="degree">
+                                    <option selected>Select</option>
+                                    <option value="bms">BMS</option>
+                                    <option value="mbbs">MBBS</option>
+                                    <option value="md">MD</option>                                    
+                                </select>
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="dob" class="col-md-12 col-form-label text-md-right">Speciality</label>
+                                <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="speciality">
+                                    <option selected>Select</option>
+                                    <option value="ent">ENT</option>
+                                    <option value="heart">Heart</option>
+                                    <option value="kidney">Kidney</option>
+                                    <option value="skin">Skin</option>
+                                </select>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-danger" (click)="modalRef?.hide()">Cancel</button>
+        </div>
+    </form>
+</ng-template>

@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'patch', loadChildren: () => import('./modules/admin/patch-master/patch-master.module')
       .then(mod => mod.PatchMasterModule)
+  },
+  {
+    path: 'doctor', loadChildren: () => import('./modules/admin/doctor-master/doctor-master.module')
+      .then(mod => mod.DoctorMasterModule)
   }
 ];
 

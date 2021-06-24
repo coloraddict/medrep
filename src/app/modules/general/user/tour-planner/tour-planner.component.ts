@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
+import { DataService } from 'src/app/services/data.service';
 import * as moment from "moment";
 
 interface CalendarItem {
@@ -12,18 +15,38 @@ interface CalendarItem {
 @Component({
   selector: 'app-tour-planner',
   templateUrl: './tour-planner.component.html',
-  styleUrls: ['./tour-planner.component.css']
+  styleUrls: ['./tour-planner.component.css'],
+  providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: false, autoClose: true } }]
 })
 export class TourPlannerComponent implements OnInit {
 
+  modalRef?: BsModalRef;
+  config = {
+    animated: false,
+    ignoreBackdropClick: true,
+    class: 'modal-custom'
+  };
   mode:string = "month";
   date = moment();
   calendar: Array<CalendarItem[]> = [];
+  selectedDay?: string;
+  selectedPatch: string = 'Select Patch';
+  patch_list: any = [];
+  slots: any = ['10:30-11:00', '11:30-12:00', '12:30-1:00', '1:30-2:00', '3:00-3:30', '4:00-4:30', '5:00-5:30'];
 
-  constructor() { }
+  constructor(private modalService: BsModalService, private dataService: DataService) { }
 
   ngOnInit(): void {
     this.switchView("month");
+    this.dataService.getPatches().subscribe(patches => {
+      this.patch_list = patches;
+    })
+  }
+
+  openModal(template: TemplateRef<any>, day: any) {
+    console.log(day);
+    this.selectedDay = day.day + ", " + day.dayName;
+    this.modalRef = this.modalService.show(template, this.config);
   }
 
   switchView(mode: "week" | "month"){
@@ -134,6 +157,14 @@ export class TourPlannerComponent implements OnInit {
       this.date.add(1, "months");
       this.calendar = this.createCalendar(this.date);
     }
+  }
+
+  onSelectPatch(p_patch:any){
+    this.selectedPatch = p_patch.name;
+  }
+
+  onSelectSlot(slot: any){
+    
   }
 
 }
