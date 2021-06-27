@@ -32,8 +32,11 @@
                   <div
                     class="calendar-days"
                     [class.weekend]="day.isWeekend"
+                    [class.previous-month]="day.className==='previous-month'"
+                    [class.next-month]="day.className==='next-month'"
+                    [class.disabled]="day.isWeekend || day.className==='previous-month' || day.className==='next-month'"
                     *ngFor="let day of calendarItem"
-                    (click)="openModal(template, day)"
+                    (click)="openModal(template, day, $event)"
                   >
                     <div *ngIf="i === 0">{{day.dayName}}</div>
                     {{day.day}}
@@ -65,14 +68,58 @@
 
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">{{'Plan for ' + selectedDay}}</h4>
+    <h4 class="modal-title pull-left">{{'Plan for ' + selectedDay.day + ' ' + selectedDay.dayName}}</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef?.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <div class="slot-container">
-      <a class="pills" *ngFor="let slot of slots" (click)="onSelectSlot(slot)">{{ slot }}</a>
-    </div>    
+    <div class="row">
+      <div class="col-md-12">
+        <label for="dob" class="col-md-12 col-form-label text-md-right">Time Slot</label>
+        <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="slot" #slot>
+            <option selected>Select</option>
+            <option value="{{ slot }}" *ngFor="let slot of slots">{{ slot }}</option>
+        </select>    
+      </div>
+    </div>
+    <p></p>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="dob" class="col-md-12 col-form-label text-md-right">Area</label>
+        <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="area" (change)="onAreaChange($event)" #area>
+            <option selected>Select</option>
+            <option value="{{ area.id }}" *ngFor="let area of area_list">{{ area.name }}</option>
+        </select>    
+      </div>        
+  </div> 
+  <p></p>
+    <div class="row">
+        <div class="col-md-12">
+          <label for="dob" class="col-md-12 col-form-label text-md-right">Patch</label>
+          <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="patch" (change)="onPatchChange($event)" #patch>
+              <option selected>Select</option>
+              <option value="{{ patch.id }}" *ngFor="let patch of patch_list">{{ patch.name }}</option>
+          </select>    
+        </div>        
+    </div> 
+    <p></p>
+    <div class="row">
+        <div class="col-md-12">
+          <label for="dob" class="col-md-12 col-form-label text-md-right">Doctor</label>
+          <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="doctor" #doctor>
+              <option selected>Select</option>
+              <option value="{{ doctor.id }}" *ngFor="let doctor of doctor_list">{{ doctor.firstName + " " + doctor.lastName }}</option>
+          </select>    
+        </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary" (click)="setPlan(slot.value, area.value, patch.value, doctor.value)">Set</button>&nbsp;
+        <button class="btn btn-danger" (click)="modalRef?.hide()">Cancel</button>
+      </div>
+    </div>
   </div>
 </ng-template>

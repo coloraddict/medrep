@@ -1,8 +1,9 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { DataService } from 'src/app/services/data.service';
 import * as moment from "moment";
+import { ViewChildren } from '@angular/core';
 
 interface CalendarItem {
   day: string;
@@ -29,23 +30,28 @@ export class TourPlannerComponent implements OnInit {
   mode:string = "month";
   date = moment();
   calendar: Array<CalendarItem[]> = [];
-  selectedDay?: string;
+  selectedDay?: any = {};
+  selectedDayElement?:any;
   selectedPatch: string = 'Select Patch';
   patch_list: any = [];
+  doctor_list: any = [];
+  area_list: any = [];
+  @ViewChild('slotContainer') slotContainer?: ElementRef<any>;
   slots: any = ['10:30-11:00', '11:30-12:00', '12:30-1:00', '1:30-2:00', '3:00-3:30', '4:00-4:30', '5:00-5:30'];
 
-  constructor(private modalService: BsModalService, private dataService: DataService) { }
+  constructor(private modalService: BsModalService, private dataService: DataService, private element: ElementRef) { }
 
   ngOnInit(): void {
+    this.selectedDay.plan = [];
     this.switchView("month");
-    this.dataService.getPatches().subscribe(patches => {
-      this.patch_list = patches;
-    })
+    this.loadAreaList();
   }
 
-  openModal(template: TemplateRef<any>, day: any) {
-    console.log(day);
-    this.selectedDay = day.day + ", " + day.dayName;
+  openModal(template: TemplateRef<any>, day: any, evt: any) {
+    console.log(evt);
+    this.selectedDay = day;
+    this.selectedDayElement = evt.target;
+    console.log(this.selectedDayElement);
     this.modalRef = this.modalService.show(template, this.config);
   }
 
@@ -86,16 +92,21 @@ export class TourPlannerComponent implements OnInit {
 
   createCalendar(month: moment.Moment) {
     const date = month.clone();
+    console.log(date);
     const daysInMonth = date.daysInMonth();
+    console.log("daysInMonth", daysInMonth);
     const startOfMonth = date.startOf("months").format("ddd");
+    console.log("startOfMonth", startOfMonth);
     const endOfMonth = date.endOf("months").format("ddd");
+    console.log("endOfMonth", endOfMonth);
     const weekdaysShort = moment.weekdaysShort();
+    console.log("weekdaysShort", weekdaysShort);
     const calendar: CalendarItem[] = [];
 
     const daysBefore = weekdaysShort.indexOf(startOfMonth);
-    const daysAfter =
-      weekdaysShort.length - 1 - weekdaysShort.indexOf(endOfMonth);
-
+    console.log("daysBefore", daysBefore);
+    const daysAfter = weekdaysShort.length - 1 - weekdaysShort.indexOf(endOfMonth);
+    console.log("daysAfter", daysAfter);
     const clone = date.startOf("months").clone();
     if (daysBefore > 0) {
       clone.subtract(daysBefore, "days");
@@ -116,6 +127,7 @@ export class TourPlannerComponent implements OnInit {
       clone.add(1, "days");
     }
 
+    console.log(calendar);
     return calendar.reduce(
       (pre: Array<CalendarItem[]>, curr: CalendarItem) => {
         if (pre[pre.length - 1].length < weekdaysShort.length) {
@@ -163,8 +175,56 @@ export class TourPlannerComponent implements OnInit {
     this.selectedPatch = p_patch.name;
   }
 
-  onSelectSlot(slot: any){
-    
+  onSelectSlot(slot: any, evt: any){
+    this.deselectSlots();
+    evt.target.classList.add('selected');
+  }
+
+  loadAreaList(){
+    this.dataService.getArea().subscribe(res => {
+      this.area_list = res;
+    });   
+  }
+
+  loadPatchList(){
+    this.dataService.getPatches().subscribe(res => {
+      this.patch_list = res;
+    });   
+  }
+
+  loadDoctorList(){
+    this.dataService.getDoctors().subscribe(res => {
+      this.doctor_list = res;
+    });   
+  }
+
+  deselectSlots(){
+    console.log(this.slotContainer?.nativeElement);
+  }
+
+  onAreaChange(evt: any){
+    this.dataService.getPatchByArea(evt.target.value).subscribe(res => {
+      this.patch_list = res;
+    })
+  }
+
+  onPatchChange(evt: any){
+    this.dataService.getDoctorByPatch(evt.target.value).subscribe(res => {
+      this.doctor_list = res;
+    })
+  }
+
+  setPlan(slot: string, area: string, patch: string, doctor: string){
+    let plan = {
+      slot: slot,
+      area: area,
+      patch: patch,
+      doctor: doctor
+    }
+    this.selectedDay["plan"].push(plan);
+    console.log(this.selectedDay);
+    this.selectedDayElement.classList.add("hasPlan");
+    this.modalService.hide();
   }
 
 }

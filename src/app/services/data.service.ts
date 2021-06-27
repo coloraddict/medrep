@@ -43,9 +43,12 @@ export class DataService {
   }
 
   // PATCHES
-  getPatches(area_id: any = null){
-    console.log(area_id);
-    return this.http.get("http://192.168.1.205:8080/patches?area_id=" + area_id);
+  getPatches(){
+    return this.http.get("http://192.168.1.205:8080/patches");
+  }
+
+  getPatchByArea(area_id: any = null){
+    return this.http.get("http://192.168.1.205:8080/getPatchByArea?area_id=" + area_id);
   }
 
   addPatch(payload: any){
@@ -63,6 +66,10 @@ export class DataService {
   //DOCTORS
   getDoctors(){
     return this.http.get("http://192.168.1.205:8080/doctors")
+  }
+
+  getDoctorByPatch(patch_id: any = null){
+    return this.http.get("http://192.168.1.205:8080/getDoctorByPatch?patch_id=" + patch_id);
   }
 
   addDoctor(payload: any){

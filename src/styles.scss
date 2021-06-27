@@ -228,7 +228,21 @@ i {
     color: #f00;
 }
 
+.btn-info {
+    color: #fff;
+    background-color: #766df4;
+    border-color: #766df4;
+}
 
+.btn-info i {
+    color: #fff;
+}
+
+.btn-info:hover, .btn-info:focus, .btn-info:active{
+    color: #fff;
+    background-color: #5549f1;
+    border-color: #766df4;
+}
 
 
 // SLIM SCROLLBAR
