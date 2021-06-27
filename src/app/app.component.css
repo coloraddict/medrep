@@ -1,9 +1,10 @@
 header {
     padding: 15px 15px 20px 15px;
-    background-color: #fff;
+    background-color: rgba(1,180,142, .5);
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
     margin-bottom: 10px;
 }
+
 header img {
     width: 30px;
 }
@@ -11,6 +12,7 @@ header img {
 header .actions {
     float: right;
     padding-right: 10px;
+    margin-top: 10px;
 }
 
 header .actions a {
@@ -18,9 +20,10 @@ header .actions a {
 }
 
 header .actions a i {
-    color: #47126b;
+    /* color: #47126b; */
+    color: #fff;
 }
 
 header .actions .notification {
-    font-size: 30px;
+    font-size: 20px;
 }
