@@ -17,7 +17,7 @@
 }
 
 .photo {
-    width: 30%;
+    width: 10%;
     float: left;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .doctor-name {
-    color: #47126b;
+    color: #333;
 }
 
 .doctor-card.card {

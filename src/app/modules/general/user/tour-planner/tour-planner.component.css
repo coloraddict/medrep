@@ -72,7 +72,7 @@
 }
 
 .calendar-days {
-  background-color: darkseagreen;
+  background-color: rgba(1,180,142, .5);
 }
 
 .calendar-days.weekend {

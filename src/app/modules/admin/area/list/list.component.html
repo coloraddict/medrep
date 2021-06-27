@@ -3,13 +3,12 @@
         <div class="row">
             <div class="col-md-12">
                 <a class="back-to-landingpage" [routerLink]="['/user/landing-page']"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-                <p></p>
             </div>
         </div>
         <div *ngFor="let alert of alerts">
             <alert [type]="alert.type" [dismissible]="dismissible" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive table-content">
             <div class="row">
                 <div class="col-sm-8"><h2>Area <b>Master</b></h2></div>
                 <div class="col-sm-4">

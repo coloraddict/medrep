@@ -3,13 +3,12 @@
         <div class="row">
             <div class="col-md-12">
                 <a class="back-to-landingpage" [routerLink]="['/user/landing-page']"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-                <p></p>
             </div>
         </div>
         <div *ngFor="let alert of alerts">
             <alert [type]="alert.type" [dismissible]="dismissible" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive table-content">
             <div class="row">
                 <div class="col-sm-8"><h2>Doctor <b>Master</b></h2></div>
                 <div class="col-sm-4">
@@ -31,9 +30,9 @@
                             </div>
                             <div class="details">
                                 <div><rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"></rating></div>
-                                <h2 class="doctor-name">{{ doctor.firstName + " " + doctor.lastName }}</h2>
+                                <h3 class="doctor-name">{{ doctor.firstName + " " + doctor.lastName }}</h3>
                                 <h5>{{ doctor.degree }}</h5>
-                                <h3>{{ doctor.speciality }}</h3>
+                                <h4>{{ doctor.speciality }}</h4>
                             </div>
                             <div class="clearfix"></div>
                         </div>

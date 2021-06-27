@@ -5,21 +5,21 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
-        <button (click)="switchView('week')">Week</button>
-        <button (click)="switchView('month')">Monthly</button>
+    <div class="col-md-12 text-center">
+        <button class="btn btn-default" (click)="switchView('week')">Week</button>&nbsp;
+        <button class="btn btn-default" (click)="switchView('month')">Monthly</button>
     </div>
 </div>
 <p></p>
 <div class="row">
     <div class="col-md-12 text-center">
         <div class="flex-container flex-center">
-            <button (click)="previous()"><i class="fa fa-caret-left" aria-hidden="true"></i></button>&nbsp;
+            <button class="btn btn-arrows" (click)="previous()"><i class="fa fa-caret-left" aria-hidden="true"></i></button>&nbsp;
             <span><b>{{date.format('MMMM ')}}{{date.format('YYYY ')}}</b></span>
             <span class="material-icons" style="padding: 7px; font-size: 20px;">
                 <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
             </span>
-            <button (click)="next()"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+            <button class="btn btn-arrows" (click)="next()"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
         </div>
     </div>
 </div>

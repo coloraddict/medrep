@@ -7,29 +7,16 @@ body {
     display: block;
     min-height: 100vh;
     background: rgba(1,180,142, .5);
-    /* background: -moz-linear-gradient(top, rgba(0,123,255,1) 0%, rgba(100,255,218,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,123,255,1)), color-stop(100%, rgba(100,255,218,1)));
-    background: -webkit-linear-gradient(top, rgba(0,123,255,1) 0%, rgba(100,255,218,1) 100%);
-    background: -o-linear-gradient(top,     rgba(0,123,255,1) 0%, rgba(100,255,218,1) 100%);
-    background: -ms-linear-gradient(top, rgba(0,123,255,1) 0%, rgba(100,255,218,1) 100%);
-    background: linear-gradient(to bottom, rgba(0,123,255,1)     0%, rgba(100,255,218,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3140a0', endColorstr='#009788', GradientType=0 ); */
-    /* background-color: #01B48E; */
 }
 
 .form-holder {
     display: flex;
     width: 350px;
     margin: 0 auto;
-    /* width: 100%; */
     min-height: 100px;
     height: 450px;
     align-items: center;
     justify-content: center;
-    /* position: relative;
-    position: fixed; */
-    /* top: 20%;
-    left: 0; */
     border: 1px solid #c2c2c2;
     border-radius: 15px;
     transform: translate(0, 30%);
@@ -42,9 +29,6 @@ body {
 
 .brand {
     width: 100%;
-    /* position: fixed;
-    top: 30%;
-    left: 0; */ 
     margin-left: 0;
     text-align: center;
     position: absolute;
@@ -65,22 +49,8 @@ img {
     width: 70px;
     margin: 0 auto;
     margin-top: -50px;
-    /* background: #fff; */
     padding: 10px;
 }
-
-/* .brand .text {
-    font-size: 30px;
-    color: #fff;
-} */
-
-/* .login-form {
-    width: 250px;
-    position: fixed;
-    bottom: 25%;
-    left: 50%;
-    margin-left: -125px;
-} */
 
 form {
     width: 100%;
@@ -89,8 +59,6 @@ form {
 }
 
 input {
-    /* width: 90%; */
-    /* font-family: Roboto; */
     font-size: 18px;
     font-weight: 400;
     text-align: left;
@@ -105,6 +73,7 @@ input {
 .input-group-text {
     width: 40px;
     height: 90%;
+    background-color: #01B48E;
 }
 
 .user_credential {
@@ -124,21 +93,14 @@ button {
 }
 
 .loginButton {
-	/* -moz-box-shadow: inset 0px 1px 3px 0px #91b8b3;
-	-webkit-box-shadow: inset 0px 1px 3px 0px #91b8b3;
-	box-shadow: inset 0px 1px 3px 0px #91b8b3; */
-	/* background-color: #fafafa; */
 	background-color: #47126b;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 2px;
-	/* border:1px solid #566963; */
     display: block;
     width: 50%;
 	cursor: pointer;
-	/* color: #313fa0; */
 	color: #FFF;
-	/* font-family: Roboto; */
 	font-size: 15px;
 	font-weight: 500;
 	padding: 10px 20px;
