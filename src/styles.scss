@@ -205,18 +205,27 @@ i {
     background-color: rgba(0,0,0,.7);
 }
 
+.modal-doctor.modal-dialog {
+    top: 100px;
+}
+
 .modal-custom.modal-dialog .modal-content{
     height: 600px;
 }
 
 .modal-doctor.modal-dialog .modal-content .modal-body .card-body{
-    height: 650px;
+    height: 350px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
 .modal-dialog {
-    max-width: 400px;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.modal-dialog .modal-header {
+    background-color: #01B48E;
 }
 
 .modal-dialog .modal-header .close {
@@ -226,6 +235,11 @@ i {
 
 .modal-dialog .modal-header .close i {
     color: #f00;
+}
+
+.modal-dialog .modal-title {
+    font-size: 20px;
+    color: #fff;
 }
 
 .btn-info {
@@ -242,6 +256,16 @@ i {
     color: #fff;
     background-color: #5549f1;
     border-color: #766df4;
+}
+
+.btn-primary {
+    font-weight: 700;
+    background-color: #01B48E;
+    border: 1px solid #01B48E;
+}
+
+.btn-primary i {
+    color: #FFF;
 }
 
 

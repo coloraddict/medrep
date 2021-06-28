@@ -11,3 +11,48 @@
     width: 100%;
     margin-bottom: 10px;
 }
+
+
+
+.custom-header-row .field-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.custom-header-row .field-row .field {
+    width: 24%;
+    font-weight: 500;
+    flex-grow: 4;
+    padding: 5px;
+    border-bottom: 1px solid #000;
+    margin-bottom: -1px;
+}
+
+.custom-header-row .field-row div.field:first-child {
+    margin-left: 0;
+}
+
+.custom-grid-row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    height: 400px;
+}
+
+.custom-grid-row div.field-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.custom-grid-row div.field {
+    width: 25%;
+    flex-grow: 4;
+    padding: 5px;
+    border: 1px solid #000;
+    margin: 0px 0px -1px -1px;
+}
+
+.custom-grid-row div.field:first-child {
+    margin-left: 0;
+}

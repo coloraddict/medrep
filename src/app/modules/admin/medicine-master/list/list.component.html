@@ -12,16 +12,41 @@
             <div class="row">
                 <div class="col-sm-8"><h2>Medicine <b>Master</b></h2></div>
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-info add-new" (click)="onAddMedicine()"><i class="fa fa-plus"></i> Add New</button>
+                    <button type="button" class="btn btn-primary add-new" (click)="onAddMedicine()"><i class="fa fa-plus"></i> Add New</button>
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-12">
+                    <div class="custom-header-row">
+                        <div class="field-row">
+                            <div class="field"><b>Id</b></div>
+                            <div class="field"><b>Name</b></div>
+                            <div class="field"><b>Price</b></div>
+                            <div class="field"><b>Actions</b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
                 <div class="col bordered"><b>Id</b></div>
                 <div class="col bordered"><b>Name</b></div>
                 <div class="col bordered"><b>Price</b></div>
                 <div class="col bordered text-center"><b>Actions</b></div>
-            </div>
-            <div class="long-list scrollbar scrollbar-black bordered-black square thin">
+            </div> -->
+            <ul class="custom-grid-row long-list scrollbar scrollbar-black bordered-black square thin">
+                <li *ngFor="let medicine of  medicine_list; let i = index">
+                    <div class="field-row">
+                        <div class="field">{{ medicine.id }}</div>
+                        <div class="field">{{ medicine.name }}</div>
+                        <div class="field">{{ medicine.price }}</div>
+                        <div class="field text-center">
+                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil" aria-hidden="true" (click)="onUpdateArea(i)" style="cursor: pointer;"></i></a>&nbsp;&nbsp;
+                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete(i)" style="cursor: pointer;"></i></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!-- <div class="long-list scrollbar scrollbar-black bordered-black square thin">
                 <div class="row" *ngFor="let medicine of  medicine_list; let i = index">
                     <div class="col bordered">{{ medicine.id }}</div>
                     <div class="col bordered">{{ medicine.name }}</div>
@@ -31,7 +56,7 @@
                         <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete(i)" style="cursor: pointer;"></i></a>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <form [formGroup]="addNewMedicineForm">
                 <div formArrayName="listMedicines">
                     <div *ngFor="let medicine of listMedicines.controls; let i=index">                            

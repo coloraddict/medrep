@@ -7,7 +7,7 @@
 }
 
 .long-list {
-    height: 600px;
+    height: 400px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -38,4 +38,5 @@
 
 .doctor-card.card {
     cursor: pointer;
+    background-color: rgba(1,180,142, .1);
 }

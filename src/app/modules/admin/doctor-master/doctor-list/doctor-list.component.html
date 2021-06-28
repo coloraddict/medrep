@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-sm-8"><h2>Doctor <b>Master</b></h2></div>
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-info add-new" (click)="openModal(template)"><i class="fa fa-plus"></i> Add New</button>
+                    <button type="button" class="btn btn-primary add-new" (click)="openModal(template)"><i class="fa fa-plus"></i> Add New</button>
                 </div>
             </div>
             <!-- <div class="row">
@@ -30,9 +30,9 @@
                             </div>
                             <div class="details">
                                 <div><rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"></rating></div>
-                                <h3 class="doctor-name">{{ doctor.firstName + " " + doctor.lastName }}</h3>
-                                <h5>{{ doctor.degree }}</h5>
-                                <h4>{{ doctor.speciality }}</h4>
+                                <h3 class="doctor-name"><b>{{ doctor.firstName + " " + doctor.lastName }}</b></h3>
+                                <h5><b>{{ doctor.degree }}</b></h5>
+                                <h4><b>{{ doctor.speciality }}</b></h4>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -78,7 +78,7 @@
 <ng-template #template>
     <form name="my-form" [formGroup]="newDoctorForm" (ngSubmit)="submitNewDoctor()">
         <div class="modal-header">
-            <h4 class="modal-title pull-left">New Doctor</h4>
+            <h1 class="modal-title pull-left">New Doctor</h1>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef?.hide()">
                 <i class="fa fa-times" aria-hidden="true"></i>
             </button>

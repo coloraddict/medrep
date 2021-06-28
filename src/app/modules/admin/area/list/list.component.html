@@ -12,22 +12,45 @@
             <div class="row">
                 <div class="col-sm-8"><h2>Area <b>Master</b></h2></div>
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-info add-new" (click)="onAddArea()"><i class="fa fa-plus"></i> Add New</button>
+                    <button type="button" class="btn btn-primary add-new" (click)="onAddArea()"><i class="fa fa-plus"></i> Add New</button>
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-12">
+                    <div class="custom-header-row">
+                        <div class="field-row">
+                            <div class="field"><b>Id</b></div>
+                            <div class="field"><b>Name</b></div>
+                            <div class="field"><b>Actions</b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
                 <div class="col bordered"><b>Id</b></div>
                 <div class="col bordered"><b>Name</b></div>
                 <div class="col bordered text-center"><b>Actions</b></div>
-            </div>
-            <div class="row" *ngFor="let area of area_list; let i = index">
+            </div> -->
+            <ul class="custom-grid-row long-list scrollbar scrollbar-black bordered-black square thin">
+                <li *ngFor="let area of area_list; let i = index">
+                    <div class="field-row">
+                        <div class="field">{{ area.id }}</div>
+                        <div class="field">{{ area.name }}</div>
+                        <div class="field text-center">
+                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil" aria-hidden="true" (click)="onUpdateArea(i)" style="cursor: pointer;"></i></a>&nbsp;&nbsp;
+                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete(i)" style="cursor: pointer;"></i></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!-- <div class="row" *ngFor="let area of area_list; let i = index">
                 <div class="col bordered">{{ area.id }}</div>
                 <div class="col bordered">{{ area.name }}</div>
                 <div class="col bordered text-center">
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil" aria-hidden="true" (click)="onUpdateArea(i)" style="cursor: pointer;"></i></a>&nbsp;&nbsp;
                     <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete(i)" style="cursor: pointer;"></i></a>
                 </div>
-            </div>
+            </div> -->
             <form [formGroup]="addNewAreaForm">
                 <div formArrayName="listAreas">
                     <div *ngFor="let area of listAreas.controls; let i=index">                            
