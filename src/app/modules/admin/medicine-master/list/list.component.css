@@ -39,7 +39,7 @@
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    height: 400px;
+    height: 520px;
 }
 
 .custom-grid-row div.field-row {

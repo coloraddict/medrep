@@ -1,0 +1,19 @@
+.long-list {
+    height: 520px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.btn-primary {
+    font-size: 12px;
+}
+
+.card.doctor-card {
+    margin: 10px;
+    margin-left: 0;
+    background-color: #fff;
+}
+
+.actions {
+    display: block;
+}

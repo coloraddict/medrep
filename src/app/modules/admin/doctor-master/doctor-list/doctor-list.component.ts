@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { DataService } from '../../../../services/data.service';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -6,7 +6,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-doctor-list',
   templateUrl: './doctor-list.component.html',
-  styleUrls: ['./doctor-list.component.css']
+  styleUrls: ['./doctor-list.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DoctorListComponent implements OnInit {
 

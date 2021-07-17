@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, QueryList, TemplateRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { DataService } from 'src/app/services/data.service';
@@ -11,6 +12,7 @@ interface CalendarItem {
   className?: string;
   isWeekend: boolean;
   hour?: string;
+  plan?: any
 }
 
 @Component({
@@ -39,7 +41,16 @@ export class TourPlannerComponent implements OnInit {
   @ViewChild('slotContainer') slotContainer?: ElementRef<any>;
   slots: any = ['10:30-11:00', '11:30-12:00', '12:30-1:00', '1:30-2:00', '3:00-3:30', '4:00-4:30', '5:00-5:30'];
 
-  constructor(private modalService: BsModalService, private dataService: DataService, private element: ElementRef) { }
+  planForm: FormGroup;
+
+  constructor(private modalService: BsModalService, private dataService: DataService, private element: ElementRef, private formBuilder: FormBuilder) { 
+    this.planForm = this.formBuilder.group({
+      slot: new FormControl(),
+      area: new FormControl(),
+      patch: new FormControl(),
+      doctor: new FormControl()
+    })
+  }
 
   ngOnInit(): void {
     this.selectedDay.plan = [];
@@ -47,12 +58,17 @@ export class TourPlannerComponent implements OnInit {
     this.loadAreaList();
   }
 
-  openModal(template: TemplateRef<any>, day: any, evt: any) {
-    console.log(evt);
-    this.selectedDay = day;
+  openModal(template: TemplateRef<any>, evt: any, index: number) {    
     this.selectedDayElement = evt.target;
-    console.log(this.selectedDayElement);
+    let cellIndex = this.getNodeIndex(this.selectedDayElement);
+    this.selectedDay = this.calendar[index][cellIndex];
     this.modalRef = this.modalService.show(template, this.config);
+  }
+
+  getNodeIndex (element: any): any {
+    if(element!==undefined) {
+      return Array.from(element.parentNode.childNodes).indexOf(element);
+    }    
   }
 
   switchView(mode: "week" | "month"){
@@ -127,7 +143,7 @@ export class TourPlannerComponent implements OnInit {
       clone.add(1, "days");
     }
 
-    console.log(calendar);
+    // console.log(calendar);
     return calendar.reduce(
       (pre: Array<CalendarItem[]>, curr: CalendarItem) => {
         if (pre[pre.length - 1].length < weekdaysShort.length) {
@@ -214,17 +230,47 @@ export class TourPlannerComponent implements OnInit {
     })
   }
 
-  setPlan(slot: string, area: string, patch: string, doctor: string){
+  setPlan(slot: string){
     let plan = {
-      slot: slot,
-      area: area,
-      patch: patch,
-      doctor: doctor
+      id: null,
+      user: 'Pradeep Singh',
+      visitDate: '10/07/2021',
+      visitTime: slot,
+      area: {},
+      patch: {},
+      doctor: {},
+      createdBy: 'Pradeep Singh'
     }
-    this.selectedDay["plan"].push(plan);
-    console.log(this.selectedDay);
-    this.selectedDayElement.classList.add("hasPlan");
-    this.modalService.hide();
+
+    var areaid = this.planForm.get('area')?.value;
+    var selectedarea = this.area_list.filter((item: any) => item.id === areaid);
+    plan.area = {id: areaid, name: selectedarea[0].name};
+
+    var patchid = this.planForm.get('patch')?.value;
+    var selectedPatch = this.patch_list.filter((item: any) => item.id === patchid);
+    plan.patch = {id: patchid, name: selectedPatch[0].name};
+
+    var doctorid = this.planForm.get("doctor")?.value;
+    var selectedDoctor = this.doctor_list.filter((item: any) => item.id === doctorid);
+    plan.doctor = {id: doctorid, name: selectedDoctor[0].firstName + ' ' + ' ' + selectedDoctor[0].lastName};    
+
+    this.dataService.addPlan(plan).subscribe(response => {
+      console.log(response);
+      this.modalService.hide();
+
+      if(JSON.parse(JSON.stringify(response)).success) {
+        if(this.selectedDayElement.classList.contains("calendar-days")){
+          this.selectedDayElement.classList.add("hasPlan");
+        }else{
+          this.selectedDayElement.parentNode.classList.add("hasPlan");
+        }
+        this.selectedDay["plan"] = plan;
+        console.log(this.calendar);
+      } else {
+        alert('record exists');
+      }      
+    })
+    
   }
 
 }

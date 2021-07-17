@@ -6,82 +6,93 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
 
+  baseUrl = "http://192.168.1.202:8080/";
+
   constructor(private http: HttpClient) { }
 
   getArea(){
-    return this.http.get("http://192.168.1.205:8080/area");
+    return this.http.get(this.baseUrl + "area");
   }
 
   addArea(payload: any){
-    return this.http.post("http://192.168.1.205:8080/add", payload);
+    return this.http.post(this.baseUrl + "add", payload);
   }
 
   updateArea(payload: any){
-    return this.http.post("http://192.168.1.205:8080/add", payload);
+    return this.http.post(this.baseUrl + "add", payload);
   }
 
   deleteArea(id: any) {
-    return this.http.get("http://192.168.1.205:8080/delete?id=" + id);
+    return this.http.get(this.baseUrl + "delete?id=" + id);
   }
 
 
   // MEDICINES
   getMedicines(){
-    return this.http.get("http://192.168.1.205:8080/medicines")
+    return this.http.get(this.baseUrl + "medicines")
   }
 
   addMedicine(payload: any){
-    return this.http.post("http://192.168.1.205:8080/addMedicine", payload);
+    return this.http.post(this.baseUrl + "addMedicine", payload);
   }
 
   updateMedicine(payload: any){
-    return this.http.post("http://192.168.1.205:8080/updateMedicine", payload);
+    return this.http.post(this.baseUrl + "updateMedicine", payload);
   }
 
   deleteMedicine(id: any) {
-    return this.http.get("http://192.168.1.205:8080/deleteMedicine?id=" + id);
+    return this.http.get(this.baseUrl + "deleteMedicine?id=" + id);
   }
 
   // PATCHES
   getPatches(){
-    return this.http.get("http://192.168.1.205:8080/patches");
+    return this.http.get(this.baseUrl + "patches");
   }
 
   getPatchByArea(area_id: any = null){
-    return this.http.get("http://192.168.1.205:8080/getPatchByArea?area_id=" + area_id);
+    return this.http.get(this.baseUrl + "getPatchByArea?area_id=" + area_id);
   }
 
   addPatch(payload: any){
-    return this.http.post("http://192.168.1.205:8080/addPatch", payload);
+    return this.http.post(this.baseUrl + "addPatch", payload);
   }
 
   updatePatch(payload: any){
-    return this.http.post("http://192.168.1.205:8080/updatePatch", payload);
+    return this.http.post(this.baseUrl + "updatePatch", payload);
   }
 
   deletePatch(id: any) {
-    return this.http.get("http://192.168.1.205:8080/deletePatch?id=" + id);
+    return this.http.get(this.baseUrl + "deletePatch?id=" + id);
   }
 
   //DOCTORS
   getDoctors(){
-    return this.http.get("http://192.168.1.205:8080/doctors")
+    return this.http.get(this.baseUrl + "doctors")
   }
 
   getDoctorByPatch(patch_id: any = null){
-    return this.http.get("http://192.168.1.205:8080/getDoctorByPatch?patch_id=" + patch_id);
+    return this.http.get(this.baseUrl + "getDoctorByPatch?patch_id=" + patch_id);
   }
 
   addDoctor(payload: any){
-    return this.http.post("http://192.168.1.205:8080/addDoctor", payload);
+    return this.http.post(this.baseUrl + "addDoctor", payload);
   }
 
   updateDoctor(payload: any){
-    return this.http.post("http://192.168.1.205:8080/updatePatch", payload);
+    return this.http.post(this.baseUrl + "updatePatch", payload);
   }
 
   deleteDoctor(id: any) {
-    return this.http.get("http://192.168.1.205:8080/deletePatch?id=" + id);
+    return this.http.get(this.baseUrl + "deletePatch?id=" + id);
   }
 
+  // TOUR PLAN
+  addPlan(payload: any){
+    return this.http.post(this.baseUrl + "addPlan", payload);
+  }
+
+  // TODAYS SCHEDULE
+  getTodaysPlan(){
+    return this.http.get(this.baseUrl + "schedule")
+  }
 }

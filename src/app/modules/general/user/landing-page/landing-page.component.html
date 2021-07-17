@@ -1,11 +1,21 @@
 <!-- <header></header> -->
 <div class="overlay" *ngIf="ddOverlay"></div>
 <!-- <div class="container"> -->
-
     <div class="row">
-        <div class="col-xs-12 no-padding">
+        <div class="col">
+            <header>
+                <a href="#"><img src="assets/images/brand-logo.png"></a>                   
+                <div class="actions">
+                    <a href="#" class="notification"><i class="fa fa-bell-o" aria-hidden="true"></i></a>
+                    <a href="#" class="notification"><i class="fa fa-cog"></i></a>
+                </div>
+            </header>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
             <ul class="services">
-                <li>
+                <li [routerLink]="['/user/todays-schedule']">
                     <!-- <img src="assets/images/calendar.png" alt=""> -->
                     <i class="fa fa-calendar menu-icons"></i>
                     <h3 class="service-name">Todays Schedule</h3>

@@ -1,69 +1,83 @@
-<div class="row">
-    <div class="col-md-12">
-        <a class="back-to-landingpage" [routerLink]="['/user/landing-page']"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-        <p></p>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12 text-center">
-        <button class="btn btn-default" (click)="switchView('week')">Week</button>&nbsp;
-        <button class="btn btn-default" (click)="switchView('month')">Monthly</button>
-    </div>
-</div>
-<p></p>
-<div class="row">
-    <div class="col-md-12 text-center">
-        <div class="flex-container flex-center">
-            <button class="btn btn-arrows" (click)="previous()"><i class="fa fa-caret-left" aria-hidden="true"></i></button>&nbsp;
-            <span><b>{{date.format('MMMM ')}}{{date.format('YYYY ')}}</b></span>
-            <span class="material-icons" style="padding: 7px; font-size: 20px;">
-                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
-            </span>
-            <button class="btn btn-arrows" (click)="next()"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+<div class="card custom">
+  <div class="card-body">
+    <div class="row">
+        <div class="col-md-12">
+            <a class="back-to-landingpage" [routerLink]="['/user/landing-page']"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+            <p></p>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12"  style="overflow-y: scroll;">
-        <ng-container [ngSwitch]="mode">
-            <ng-container *ngSwitchCase="'month'">
-              <div *ngFor="let calendarItem of calendar; let i = index">
-                <div class="flex-container flex-center">
-                  <div
-                    class="calendar-days"
-                    [class.weekend]="day.isWeekend"
-                    [class.previous-month]="day.className==='previous-month'"
-                    [class.next-month]="day.className==='next-month'"
-                    [class.disabled]="day.isWeekend || day.className==='previous-month' || day.className==='next-month'"
-                    *ngFor="let day of calendarItem"
-                    (click)="openModal(template, day, $event)"
-                  >
-                    <div *ngIf="i === 0">{{day.dayName}}</div>
-                    {{day.day}}
-                  </div>
-                </div>
-              </div>
-            </ng-container>
-          
-            <ng-container *ngSwitchCase="'week'">
-              <div *ngFor="let calendarItem of calendar; let i = index">
-                <div class="flex-container flex-center">
-                  <div
-                    class="calendar-days"
-                    [class.weekend]="day.isWeekend"
-                    *ngFor="let day of calendarItem; let dayIndex = index;"
-                  >
-                    <div *ngIf="i === 0">
-                      {{day.dayName}}
-                      <div>{{day.day}}</div>
-                    </div>
-                    <div class="hours" *ngIf="dayIndex === 0 && i > 0" style="margin-right: 30px;">{{day.hour + ":00"}}</div>
-                  </div>
-                </div>
-              </div>
-            </ng-container>
-          </ng-container>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <button class="btn btn-default" (click)="switchView('week')">Week</button>&nbsp;
+            <button class="btn btn-default" (click)="switchView('month')">Monthly</button>
+        </div>
     </div>
+    <p></p>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="flex-container flex-center">
+                <button class="btn btn-arrows" (click)="previous()"><i class="fa fa-caret-left" aria-hidden="true"></i></button>&nbsp;
+                <span><b>{{date.format('MMMM ')}}{{date.format('YYYY ')}}</b></span>
+                <span class="material-icons" style="padding: 7px; font-size: 20px;">
+                    <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                </span>
+                <button class="btn btn-arrows" (click)="next()"><i class="fa fa-caret-right" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12"  style="overflow-y: scroll;">
+            <ng-container [ngSwitch]="mode">
+                <ng-container *ngSwitchCase="'month'">
+                  <div *ngFor="let calendarItem of calendar; let i = index">
+                    <div class="flex-container flex-center">
+                      <div
+                        class="calendar-days"
+                        [class.weekend]="day.isWeekend"
+                        [class.previous-month]="day.className==='previous-month'"
+                        [class.next-month]="day.className==='next-month'"
+                        [class.disabled]="day.isWeekend || day.className==='previous-month' || day.className==='next-month'"
+                        *ngFor="let day of calendarItem"
+                        (click)="openModal(template, $event, i)"
+                      >
+                        <div *ngIf="i === 0">{{day.dayName}}</div>
+                        {{day.day}}
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              
+                <ng-container *ngSwitchCase="'week'">
+                  <div *ngFor="let calendarItem of calendar; let i = index">
+                    <div class="flex-container flex-center">
+                      <div
+                        class="calendar-days"
+                        [class.weekend]="day.isWeekend"
+                        *ngFor="let day of calendarItem; let dayIndex = index;"
+                      >
+                        <div *ngIf="i === 0">
+                          {{day.dayName}}
+                          <div>{{day.day}}</div>
+                        </div>
+                        <div class="hours" *ngIf="dayIndex === 0 && i > 0" style="margin-right: 30px;">{{day.hour + ":00"}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+        </div>
+    </div>
+    <p></p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tour-legends darkgrey"></div>
+        <div class="tour-legends">&nbsp;Denotes weekend or holidays</div>
+        <br>
+        <div class="tour-legends oceanblue"></div>
+        <div class="tour-legends">&nbsp;Denotes working days</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <ng-template #template>
@@ -73,53 +87,55 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+  <form [formGroup]="planForm">
   <div class="modal-body">
-    <div class="row">
-      <div class="col-md-12">
-        <label for="dob" class="col-md-12 col-form-label text-md-right">Time Slot</label>
-        <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="slot" #slot>
-            <option selected>Select</option>
-            <option value="{{ slot }}" *ngFor="let slot of slots">{{ slot }}</option>
-        </select>    
-      </div>
-    </div>
-    <p></p>
-    <div class="row">
-      <div class="col-md-12">
-        <label for="dob" class="col-md-12 col-form-label text-md-right">Area</label>
-        <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="area" (change)="onAreaChange($event)" #area>
-            <option selected>Select</option>
-            <option value="{{ area.id }}" *ngFor="let area of area_list">{{ area.name }}</option>
-        </select>    
-      </div>        
-  </div> 
-  <p></p>
-    <div class="row">
+      <div class="row">
         <div class="col-md-12">
-          <label for="dob" class="col-md-12 col-form-label text-md-right">Patch</label>
-          <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="patch" (change)="onPatchChange($event)" #patch>
+          <label for="dob" class="col-md-12 col-form-label text-md-right">Time Slot</label>
+          <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="slot" #slot>
               <option selected>Select</option>
-              <option value="{{ patch.id }}" *ngFor="let patch of patch_list">{{ patch.name }}</option>
+              <option value="{{ slot }}" *ngFor="let slot of slots">{{ slot }}</option>
+          </select>    
+        </div>
+      </div>
+      <p></p>
+      <div class="row">
+        <div class="col-md-12">
+          <label for="dob" class="col-md-12 col-form-label text-md-right">Area</label>
+          <select id="area" class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="area" (change)="onAreaChange($event)" #area>
+              <option selected>Select</option>
+              <option value="{{ area.id }}" *ngFor="let area of area_list">{{ area.name }}</option>
           </select>    
         </div>        
     </div> 
     <p></p>
-    <div class="row">
-        <div class="col-md-12">
-          <label for="dob" class="col-md-12 col-form-label text-md-right">Doctor</label>
-          <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="doctor" #doctor>
-              <option selected>Select</option>
-              <option value="{{ doctor.id }}" *ngFor="let doctor of doctor_list">{{ doctor.firstName + " " + doctor.lastName }}</option>
-          </select>    
-        </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <div class="row">
-      <div class="col-md-12">
-        <button class="btn btn-primary" (click)="setPlan(slot.value, area.value, patch.value, doctor.value)">Set</button>&nbsp;
-        <button class="btn btn-danger" (click)="modalRef?.hide()">Cancel</button>
+      <div class="row">
+          <div class="col-md-12">
+            <label for="dob" class="col-md-12 col-form-label text-md-right">Patch</label>
+            <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="patch" (change)="onPatchChange($event)" #patch>
+                <option selected>Select</option>
+                <option value="{{ patch.id }}" *ngFor="let patch of patch_list">{{ patch.name }}</option>
+            </select>    
+          </div>        
+      </div> 
+      <p></p>
+      <div class="row">
+          <div class="col-md-12">
+            <label for="dob" class="col-md-12 col-form-label text-md-right">Doctor</label>
+            <select class="mdb-select md-form colorful-select dropdown-primary" style="width:100%; margin: 0;" formControlName="doctor" #doctor>
+                <option selected>Select</option>
+                <option value="{{ doctor.id }}" *ngFor="let doctor of doctor_list">{{ doctor.firstName + " " + doctor.lastName }}</option>
+            </select>    
+          </div>
       </div>
     </div>
-  </div>
+    <div class="modal-footer">
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-primary" (click)="setPlan(slot.value)">Set</button>&nbsp;
+          <button class="btn btn-danger" (click)="modalRef?.hide()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </ng-template>

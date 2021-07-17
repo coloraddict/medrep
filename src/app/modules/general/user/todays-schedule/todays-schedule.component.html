@@ -1,0 +1,55 @@
+<div class="card custom">
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <a class="back-to-landingpage" [routerLink]="['/user/landing-page']"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+                <p></p>
+            </div>
+        </div>
+        <div class="table-responsive table-content">
+            <div class="row">
+                <div class="col-sm-8"><h2>Todays Plan</h2></div>
+                <!-- <div class="col-sm-4">
+                    <button type="button" class="btn btn-primary add-new" (click)="openModal(template)"><i class="fa fa-plus"></i> Add New</button>
+                </div> -->
+            </div>
+            <!-- <div class="row">
+                <div class="col bordered"><b>Id</b></div>
+                <div class="col bordered"><b>Name</b></div>
+                <div class="col bordered text-center"><b>Actions</b></div>
+            </div> -->
+            <p></p>
+            <div class="input-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" style="height: 100%;" type="button">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div class="long-list scrollbar scrollbar-black bordered-black square thin">
+                <!-- <div class="row"> -->
+                    <div class="card doctor-card" *ngFor="let plan of plan_list; let i = index">
+                        <div class="card-body">                   
+                            <div class="details">
+                                <h3><b>{{ plan.doctor.name }}</b></h3>
+                                <h5><b>{{ plan.area.name }}</b></h5>
+                                <h4><b>{{ plan.patch.name }}</b></h4>
+                                <h4><b>{{ plan.visitTime }}</b></h4>
+                            </div>
+                            <div class="actions">
+                                <button class="btn btn-sm btn-primary">Pre Sales</button>&nbsp;
+                                <button class="btn btn-sm btn-primary">Post Sales</button>&nbsp;
+                                <button class="btn btn-sm btn-primary">RCPA</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</div>

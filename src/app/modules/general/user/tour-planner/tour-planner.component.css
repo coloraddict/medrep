@@ -101,3 +101,20 @@
   top: 5px;
   right: 5px;
 }
+
+.tour-legends{
+  float: left;
+  font-size: 10px;
+}
+
+.tour-legends.darkgrey{
+  width: 15px;
+  height: 15px;
+  background-color: darkgray;
+}
+
+.oceanblue {
+  width: 15px;
+  height: 15px;
+  background-color: rgba(1,180,142, .5);
+}
