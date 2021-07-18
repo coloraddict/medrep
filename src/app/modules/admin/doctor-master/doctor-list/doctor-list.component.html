@@ -15,6 +15,7 @@
                     <button type="button" class="btn btn-primary add-new" (click)="openModal(template)"><i class="fa fa-plus"></i> Add New</button>
                 </div>
             </div>
+            <p>&nbsp;</p>
             <div class="input-group">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search">
@@ -37,7 +38,7 @@
                         <div class="card-body">
                             <div class="photo">
                                 <!-- <img src="assets/images/male-doctor.png" alt=""> -->
-                                <img [src]="doctor.gender==='Male' ? 'assets/images/male-doctor.png' : 'assets/images/female-doctor.png'" alt="">
+                                <img [src]="doctor.gender==='Male' ? 'assets/images/thirdman.jpg' : 'assets/images/anthony-shkraba.jpg'" alt="">
                             </div>
                             <div class="details">
                                 <div><rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"></rating></div>

@@ -8,13 +8,9 @@
 }
 
 .long-list {
-    height: 520px;
+    height: 490px;
     overflow-y: scroll;
     overflow-x: hidden;
-}
-.add-new {
-    width: 100%;
-    margin-bottom: 10px;
 }
 
 .photo {
@@ -24,7 +20,7 @@
 
 .photo img {
     width: 100%;
-    border-radius: 50%;    
+    border-radius: 10%;    
 }
 
 .details {

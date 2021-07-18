@@ -107,6 +107,7 @@ ul.services li {
     background: #fff;
     float: left;
     border:1px solid rgba(0,0,0,0.1);
+    border-radius: 15px;
     cursor: pointer;
 }
 

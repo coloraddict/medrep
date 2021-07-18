@@ -108,7 +108,7 @@ header .actions .notification {
 }
 
 .card-body {
-    padding: 10px;
+    padding: 20px;
 }
 
 .content {
@@ -368,6 +368,13 @@ bs-datepicker-container {
     color: #FFF;
 }
 
+.add-new {
+    margin-bottom: 10px;
+    position: absolute;
+    top: 55px;
+    right: 10px;
+}
+
 
 // TABLE
 .table-content.table-responsive {
@@ -381,6 +388,38 @@ bs-datepicker-container {
 
 .legends span {
     color: red;
+}
+
+footer {
+    display: block;
+    width: 100%;
+    height: 50px;
+    background-color: #ddd;
+    position: fixed;
+    bottom: 0;
+    z-index: 9;
+}
+
+footer ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+footer ul li {
+    flex-grow: 1;
+    padding: 5px;
+    text-align: center;
+    border-right: 1px solid #fff;
+}
+
+footer li a {
+    color: #eee;
+    font-size: 25px;
+}
+
+footer li a i {
+    color: #000;
 }
 
 @media only screen and (max-width: 1920px) and (min-width: 500px) {
