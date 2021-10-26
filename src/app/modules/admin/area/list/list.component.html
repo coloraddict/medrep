@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
-                        <div class="example-container mat-elevation-z1">
+                        <div class="example-container mat-elevation-z0">
                             <table mat-table [dataSource]="dataSource">
                             
                                 <ng-container matColumnDef="id">
@@ -92,62 +92,16 @@
 
 
 <ng-template #myDialog>
-    <h2 matDialogTitle>Dialog!</h2>
+    <h2 matDialogTitle>New Area</h2>
     <mat-dialog-content>
-        <div class="modal-header">
-            <h4 class="modal-title pull-left">New Area</h4>
-            <button mat-button matDialogClose class="close-button" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <form name="my-form" [formGroup]="newAreaForm" (ngSubmit)="submitNewArea()">
+        <form name="my-form" [formGroup]="newAreaForm">
             <div class="modal-body">        
-                <div class="card">
-                    <div class="card-body scrollbar scrollbar-black bordered-black square thin">
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <label for="id" class="col-md-12 col-form-label text-md-right">Area Id</label>
-                                <div class="col-md-12">
-                                    <input type="text" id="id" class="form-control" name="id" formControlName="id">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <label for="id" class="col-md-12 col-form-label text-md-right">Area Name</label>
-                                <div class="col-md-12">
-                                    <input type="text" id="id" class="form-control" name="name" formControlName="name">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>        
-            </div>
-        </form>
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-        <button mat-button matDialogClose class="btn btn-primary">Submit</button>&nbsp;
-        <button mat-button matDialogClose class="btn btn-danger">Cancel</button>
-    </mat-dialog-actions>
-</ng-template>
-
-
-<!-- <ng-template #template>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">New Area</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <form name="my-form" [formGroup]="newAreaForm" (ngSubmit)="submitNewArea()">
-        <div class="modal-body">        
-            <div class="card">
-                <div class="card-body scrollbar scrollbar-black bordered-black square thin">
+                <div class="scrollbar scrollbar-black bordered-black square thin">
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label for="id" class="col-md-12 col-form-label text-md-right">Area Id</label>
                             <div class="col-md-12">
-                                <input type="text" id="id" class="form-control" name="id" formControlName="id">
+                                <input type="text" class="form-control" formControlName="id">
                             </div>
                         </div>
                     </div>
@@ -155,16 +109,16 @@
                         <div class="col-md-12">
                             <label for="id" class="col-md-12 col-form-label text-md-right">Area Name</label>
                             <div class="col-md-12">
-                                <input type="text" id="id" class="form-control" name="name" formControlName="name">
+                                <input type="text" class="form-control" formControlName="name">
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>        
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" [attr.disabled]="newAreaForm.valid===true">Submit</button>
-            <button class="btn btn-danger" (click)="modalRef?.hide()">Cancel</button>
-        </div>
-    </form>
-  </ng-template> -->
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button matDialogClose class="btn btn-primary" (click)="submitNewArea()">Submit</button>&nbsp;
+        <button mat-button matDialogClose class="btn btn-danger">Cancel</button>
+    </mat-dialog-actions>
+</ng-template>

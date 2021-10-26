@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@ang
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/components/shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-list',
@@ -30,13 +31,16 @@ export class ListComponent implements OnInit {
 
   newAreaForm: FormGroup;
 
+  areaId: string = '';
+  areaName: string = '';
+
 
   constructor(private dataService: DataService, private fb: FormBuilder, private modalService: BsModalService, public dialog: MatDialog) { 
     this.addNewAreaForm = this.fb.group({
       listAreas: this.fb.array([])
     })
 
-    this.newAreaForm = this.fb.group({
+    this.newAreaForm = new FormGroup({
       id: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required])
     })
@@ -54,9 +58,7 @@ export class ListComponent implements OnInit {
   }
 
   onAddArea(){
-    let obj = {id: '', name: ''};
-    this.addClicked = true;
-    this.listAreas.push(this.newArea(obj));
+    console.log(this.newAreaForm.value);
   }
 
   onUpdateArea(index: any){
@@ -92,20 +94,20 @@ export class ListComponent implements OnInit {
         this.dataService.addArea(this.newAreaForm.value).subscribe(res => {
           let response = JSON.parse(JSON.stringify(res));
           if(response.recordExists){
-            this.alerts = [{
-              type: 'success',
-              msg: `Area exists`
-            }];
+            const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+              data: {
+                title: 'Confirm Dialog',
+                message: 'Area with ID: ' + this.newAreaForm.value.id +  ' already exists'
+              }
+            });
           }else{
-            this.alerts = [{
-              type: 'success',
-              msg: `Area added successfully`
-            }];
-            this.modalService.hide();
+            const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+              data: {
+                title: 'Confirm Dialog',
+                message: 'Area with ID: ' + this.newAreaForm.value.id +  ' added successfully'
+              }
+            });
           }
-          this.newAreaForm = this.fb.group({
-            listAreas: this.fb.array([])
-          })
           this.loadAreaList();
         })
     } else if(this.editClicked){
@@ -115,36 +117,17 @@ export class ListComponent implements OnInit {
           type: 'success',
           msg: `Area updated successfully`
         }];
-        this.modalService.hide();
-        this.newAreaForm = this.fb.group({
-          listAreas: this.fb.array([])
-        })
         this.loadAreaList();
       })
     }   
-  }
-
-  reset(): void {
-    // this.alerts = this.defaultAlerts;
   }
 
   onClosed(dismissedAlert: any): void {
     this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, this.config);
-  }
-
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(DialogContentExampleDialog);
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
-
   openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     this.dialog.open(templateRef);
+    this.newAreaForm.reset();
   }
 }
