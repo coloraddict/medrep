@@ -69,7 +69,8 @@ p.degree, p.speciality {
 }
 
 .rating {
-    color: #3c40c6;
+    font-size: 14px;
+    color: #ff3f34;
 }
 
 /* .doctor .mat-card {

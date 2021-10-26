@@ -31,20 +31,20 @@
                 </div>
                 <p></p>
                 <div class="doctor long-list scrollbar scrollbar-black bordered-black square thin">
-                        <mat-card class="detail-block mat-elevation-z0" *ngFor="let doctor of  doctor_list; let i = index" (click)="showDoctorDetails()">
-                            <mat-card-content>
-                                <div class="photo">
-                                    <img [src]="doctor.gender==='Male' ? 'assets/images/thirdman.jpg' : 'assets/images/anthony-shkraba.jpg'" alt="">
-                                </div>
-                                <div class="details">
-                                    <p class="doctor-name">{{ doctor.firstName + " " + doctor.lastName }}</p>
-                                    <p class="degree">{{ doctor.degree }}</p>
-                                    <p class="speciality">{{ doctor.speciality }}</p>
-                                    <div class="rating"><rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"></rating></div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </mat-card-content>
-                        </mat-card>
+                    <mat-card class="detail-block mat-elevation-z0" *ngFor="let doctor of  doctor_list; let i = index" (click)="showDoctorDetails()">
+                        <mat-card-content>
+                            <div class="photo">
+                                <img [src]="doctor.gender==='Male' ? 'assets/images/thirdman.jpg' : 'assets/images/anthony-shkraba.jpg'" alt="">
+                            </div>
+                            <div class="details">
+                                <p class="doctor-name">{{ doctor.firstName + " " + doctor.lastName }}</p>
+                                <p class="degree">{{ doctor.degree }}</p>
+                                <p class="speciality">{{ doctor.speciality }}</p>
+                                <div class="rating"><rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"></rating></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </mat-card-content>
+                    </mat-card>
                 </div>
             </mat-card-content>
         </mat-card>

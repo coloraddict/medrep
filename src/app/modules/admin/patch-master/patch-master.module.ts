@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PatchMasterRoutingModule } from './patch-master-routing.module';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { MaterialModule } from '../../shared/material/material.module';
 
 import { PatchListComponent } from './patch-list/patch-list.component';
 
@@ -15,6 +16,7 @@ import { PatchListComponent } from './patch-list/patch-list.component';
     PatchMasterRoutingModule,
     ReactiveFormsModule,
     AlertModule.forRoot(),
+    MaterialModule
   ]
 })
 export class PatchMasterModule { }
