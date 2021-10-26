@@ -58,14 +58,14 @@ input[type=text], input[type=password] {
 }
 
 header {
-    padding: 15px 15px 20px 15px;
+    padding: 10px;
     background-color: rgba(1,180,142, .5);
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
     margin-bottom: 10px;
 }
 
 header img {
-    width: 30px;
+    width: 20px;
 }
 
 header .actions {
@@ -75,7 +75,7 @@ header .actions {
 }
 
 header .actions a {
-    margin-left: 15px;
+    margin-left: 5px;
 }
 
 header .actions a i {
@@ -83,7 +83,7 @@ header .actions a i {
 }
 
 header .actions .notification {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .container {
@@ -304,6 +304,10 @@ i {
     color: #FFF;
 }
 
+.inner-page-container {
+    padding: 10px;
+}
+
 
 // SLIM SCROLLBAR
     
@@ -390,11 +394,36 @@ bs-datepicker-container {
     color: red;
 }
 
+.mat-card.table-holder {
+    max-height: 550px;
+    // overflow: scroll;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-table {
+    overflow: scroll;
+    max-height: 270px;
+}
+
+.mat-paginator {
+    display: block;
+    height: 40px;
+}
+
+.add-new-record {
+    font-size: 12px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
 footer {
     display: block;
     width: 100%;
-    height: 50px;
-    background-color: #ddd;
+    background-color: #313fa0;
     position: fixed;
     bottom: 0;
     z-index: 9;
@@ -404,22 +433,23 @@ footer ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 }
 
 footer ul li {
     flex-grow: 1;
-    padding: 5px;
+    padding: 10px 5px;
     text-align: center;
     border-right: 1px solid #fff;
 }
 
 footer li a {
     color: #eee;
-    font-size: 25px;
+    font-size: 18px;
 }
 
 footer li a i {
-    color: #000;
+    color: #fff;
 }
 
 @media only screen and (max-width: 1920px) and (min-width: 500px) {
@@ -427,3 +457,6 @@ footer li a i {
         width: 500px!important;
     }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

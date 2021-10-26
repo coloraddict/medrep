@@ -1,52 +1,23 @@
-.table-responsive {
-    overflow: hidden;]
-    background-color: #fff;
-}
-.bordered {
-    padding: 10px 15px;
-    border: 1px solid #ddd;
+.example-container {
+    height: 430px;
+    overflow: auto;
 }
 
-.custom-header-row .field-row {
-    display: flex;
-    flex-direction: row;
+h2 {
+    margin: 0;
 }
 
-.custom-header-row .field-row .field {
-    width: 24%;
-    font-weight: 400;
-    font-size: 15px;
-    flex-grow: 4;
-    padding: 5px;
-    border-bottom: 1px solid #000;
-    margin-bottom: -1px;
+.modal-header {
+    position: relative;
 }
 
-.custom-header-row .field-row div.field:first-child {
-    margin-left: 0;
-}
-
-.custom-grid-row {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    height: 460px;
-}
-
-.custom-grid-row div.field-row {
-    display: flex;
-    flex-direction: row;
-}
-
-.custom-grid-row div.field {
-    width: 25%;
-    flex-grow: 4;
-    padding: 5px;
-    border: 1px solid #ccc;
-    margin: 0px 0px -1px -1px;
-}
-
-.custom-grid-row div.field:first-child {
-    margin-left: 0;
+.close-button {
+    padding: 2px 9px;
+    color: #fff;
+    background-color: #dc3545;
+    border-radius: 20px;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;    
 }

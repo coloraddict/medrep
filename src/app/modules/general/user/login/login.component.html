@@ -1,8 +1,52 @@
 <div class="login-page">
     <!-- <div class="row"> -->
         <!-- <div class="col-xs-12 col-sm-12 col-md-12"> -->
-            <!-- <div class="form-holder"> -->                
-                <div class="form-holder">
+            <!-- <div class="form-holder"> -->  
+                <mat-card>
+                    <mat-card-content>
+                        <div class="brand">
+                            <img src="assets/images/brand-logo.png" alt="">
+                            <h1 class="text">MEDRep</h1>
+                        </div>
+                        <form action="">
+                            <!-- <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                <input type="text" placeholder="Username" class="user_credential form-control input_user" readonly onfocus="this.removeAttribute('readonly');" />
+                            </div> -->
+                            <mat-form-field class="special" >
+                                <mat-label>Username</mat-label>
+                                <input #inputUserName matInput placeholder="User Name">
+                                <mat-icon matPrefix>account_box</mat-icon>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                            </mat-form-field>
+    
+                            <!-- <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                                </div>
+                                <input type="password" placeholder="Password" class="user_credential form-control input_user" readonly onfocus="this.removeAttribute('readonly');" />
+                            </div>                         -->
+                            <mat-form-field class="special" >
+                                <mat-label>Password</mat-label>
+                                <input type="password" #inputPassword matInput placeholder="Password">
+                                <mat-icon matPrefix>fingerprint</mat-icon>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                            </mat-form-field>
+
+                            <!-- <a href="#" routerLinkActive="active" routerLink="/login-page" class="loginButton" [routerLink]="['/user/landing-page']">LOGIN</a> -->
+                            <button mat-raised-button color="primary" class="loginButton" routerLinkActive="active" [routerLink]="['/user/landing-page']">LOGIN</button>
+                            <p>&nbsp;</p>
+                            <p class="disclaimer">By creating an account, I agree to Name# <span>Website terms</span>, Privacy policy and Licensing terms.</p>
+                            <hr>
+                            <p class="disclaimer">Dont have an account? <span><a href="#">Register</a></span></p>
+                        </form>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </mat-card-content>
+                </mat-card>
+                <!-- <div class="form-holder">
                     <div class="brand">
                         <img src="assets/images/brand-logo.png" alt="">
                         <h1 class="text">MEDRep</h1>
@@ -27,7 +71,7 @@
                         <hr>
                         <p class="disclaimer">Dont have an account? <span>Register</span></p>
                     </form>
-                </div>
+                </div> -->
             <!-- </div> -->
         <!-- </div> -->
     <!-- </div> -->

@@ -6,6 +6,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RatingModule } from 'ngx-bootstrap/rating';
+import { MaterialModule } from '../../shared/material/material.module';
 
 import { DoctorMasterRoutingModule } from './doctor-master-routing.module';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
@@ -24,7 +25,8 @@ import { DoctorListComponent } from './doctor-list/doctor-list.component';
     AlertModule.forRoot(),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    RatingModule.forRoot()
+    RatingModule.forRoot(),
+    MaterialModule
   ]
 })
 export class DoctorMasterModule { }

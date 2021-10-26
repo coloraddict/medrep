@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core
 import { DataService } from '../../../../services/data.service';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-doctor-list',
@@ -32,7 +33,7 @@ export class DoctorListComponent implements OnInit {
   rate = 2;
   isReadonly = true;
 
-  constructor(private dataService: DataService, private fb: FormBuilder, private modalService: BsModalService) {
+  constructor(private dataService: DataService, private fb: FormBuilder, private modalService: BsModalService, public dialog: MatDialog) {
     this.addNewDoctorForm = this.fb.group({
       listDoctors: this.fb.array([])
     })
@@ -131,6 +132,10 @@ export class DoctorListComponent implements OnInit {
 
   showDoctorDetails(){
     alert("Doctor details");
+  }
+
+  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
   }
 
 }

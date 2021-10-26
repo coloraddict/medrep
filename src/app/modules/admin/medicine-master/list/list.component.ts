@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef  } from '@angular/core';
 import { DataService } from '../../../../services/data.service';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list',
@@ -18,7 +19,7 @@ export class ListComponent implements OnInit {
   alerts = this.defaultAlerts;
 
 
-  constructor(private dataService: DataService, private fb: FormBuilder) { 
+  constructor(private dataService: DataService, private fb: FormBuilder, public dialog: MatDialog) { 
     this.addNewMedicineForm = this.fb.group({
       listMedicines: this.fb.array([])
     })
@@ -109,6 +110,10 @@ export class ListComponent implements OnInit {
 
   onClosed(dismissedAlert: any): void {
     this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
+  }
+
+  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
   }
 
 }

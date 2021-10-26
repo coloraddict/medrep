@@ -1,5 +1,5 @@
-<div class="card custom">
-    <div class="card-body">
+<div class="custom inner-page-container">
+    <div class="">
         <div class="row">
             <div class="col-md-12">
                 <a class="back-to-landingpage" [routerLink]="['/user/landing-page']"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
@@ -8,85 +8,163 @@
         <div *ngFor="let alert of alerts">
             <alert [type]="alert.type" [dismissible]="dismissible" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
         </div>
-        <div class="table-responsive table-content">
-            <div class="row">
-                <div class="col-sm-8"><h2>Area <b>Master</b></h2></div>
-                <div class="col-sm-4">
-                    <button type="button" class="btn btn-primary add-new" (click)="onAddArea()"><i class="fa fa-plus"></i> Add New</button>
-                </div>
-            </div>
-            <p>&nbsp;</p>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="input-group">
+        <mat-card>
+            <mat-card-content>
+                <h2>Area <b>Master</b></h2>
+                <!-- <button type="button" class="btn btn-primary add-new-record" (click)="openModal(template)"><i class="fa fa-plus"></i> Add New</button> -->
+                <button mat-raised-button color="primary" class="btn btn-primary add-new-record" (click)="openDialogWithTemplateRef(myDialog)"><i class="fa fa-plus"></i> Add New</button>
+            </mat-card-content>
+        </mat-card>
+        <p style="line-height: 10px;"></p>
+        <mat-card class="table-holder">
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <div class="input-group-append">
-                              <button class="btn btn-primary" style="height: 100%;" type="button">
-                                <i class="fa fa-search"></i>
-                              </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>            
-            <p></p>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="custom-header-row">
-                        <div class="field-row">
-                            <div class="field"><b>Id</b></div>
-                            <div class="field"><b>Name</b></div>
-                            <div class="field"><b>Actions</b></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="row">
-                <div class="col bordered"><b>Id</b></div>
-                <div class="col bordered"><b>Name</b></div>
-                <div class="col bordered text-center"><b>Actions</b></div>
-            </div> -->
-            <ul class="custom-grid-row long-list scrollbar scrollbar-black bordered-black square thin">
-                <li *ngFor="let area of area_list; let i = index">
-                    <div class="field-row">
-                        <div class="field">{{ area.id }}</div>
-                        <div class="field">{{ area.name }}</div>
-                        <div class="field text-center">
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil" aria-hidden="true" (click)="onUpdateArea(i)" style="cursor: pointer;"></i></a>&nbsp;&nbsp;
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete(i)" style="cursor: pointer;"></i></a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <!-- <div class="row" *ngFor="let area of area_list; let i = index">
-                <div class="col bordered">{{ area.id }}</div>
-                <div class="col bordered">{{ area.name }}</div>
-                <div class="col bordered text-center">
-                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil" aria-hidden="true" (click)="onUpdateArea(i)" style="cursor: pointer;"></i></a>&nbsp;&nbsp;
-                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete(i)" style="cursor: pointer;"></i></a>
-                </div>
-            </div> -->
-            <form [formGroup]="addNewAreaForm">
-                <div formArrayName="listAreas">
-                    <div *ngFor="let area of listAreas.controls; let i=index">                            
-                        <div [formGroupName]="i">
-                            <div class="row">
-                                <div class="col-md-4"><input type="text" formControlName="id" placeholder="Area Id"></div>
-                                <div class="col-md-4"><input type="text" formControlName="name" placeholder="Area Name"></div>
-                                <div class="col-md-4 text-center">
-                                    <a class="add" title="Add" data-toggle="tooltip" *ngIf="addClicked===true || editClicked ===true" (click)="submitNewArea()">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </a>
-                                    &nbsp;&nbsp;
-                                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <div class="input-group-append">
+                                <button class="btn btn-primary" style="height: 100%;" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>        
+                <p></p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+                        <div class="example-container mat-elevation-z1">
+                            <table mat-table [dataSource]="dataSource">
+                            
+                                <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef> <b>Id.</b> </th>
+                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                                </ng-container>
+                            
+                                <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef> <b>Name</b> </th>
+                                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+                            
+                                <ng-container matColumnDef="actions">
+                                    <th mat-header-cell *matHeaderCellDef> <b>Actions</b> </th>
+                                    <td mat-cell *matCellDef="let element; let i = index"> 
+                                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil" aria-hidden="true" (click)="onUpdateArea(i)" style="cursor: pointer;"></i></a>&nbsp;&nbsp;
+                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete(i)" style="cursor: pointer;"></i></a>
+                                    </td>
+                                </ng-container>
+                            
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                            
+                            </div>
+                            
+                    </div>
                 </div>
-            </form>
-        </div>
+            </mat-card-content>
+        </mat-card>
+        <form [formGroup]="addNewAreaForm">
+            <div formArrayName="listAreas">
+                <div *ngFor="let area of listAreas.controls; let i=index">                            
+                    <div [formGroupName]="i">
+                        <div class="row">
+                            <div class="col-md-4"><input type="text" formControlName="id" placeholder="Area Id"></div>
+                            <div class="col-md-4"><input type="text" formControlName="name" placeholder="Area Name"></div>
+                            <div class="col-md-4 text-center">
+                                <a class="add" title="Add" data-toggle="tooltip" *ngIf="addClicked===true || editClicked ===true" (click)="submitNewArea()">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </a>
+                                &nbsp;&nbsp;
+                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>               
     </div>
 </div>
+
+
+<ng-template #myDialog>
+    <h2 matDialogTitle>Dialog!</h2>
+    <mat-dialog-content>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">New Area</h4>
+            <button mat-button matDialogClose class="close-button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form name="my-form" [formGroup]="newAreaForm" (ngSubmit)="submitNewArea()">
+            <div class="modal-body">        
+                <div class="card">
+                    <div class="card-body scrollbar scrollbar-black bordered-black square thin">
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="id" class="col-md-12 col-form-label text-md-right">Area Id</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="id" class="form-control" name="id" formControlName="id">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="id" class="col-md-12 col-form-label text-md-right">Area Name</label>
+                                <div class="col-md-12">
+                                    <input type="text" id="id" class="form-control" name="name" formControlName="name">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button matDialogClose class="btn btn-primary">Submit</button>&nbsp;
+        <button mat-button matDialogClose class="btn btn-danger">Cancel</button>
+    </mat-dialog-actions>
+</ng-template>
+
+
+<!-- <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">New Area</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form name="my-form" [formGroup]="newAreaForm" (ngSubmit)="submitNewArea()">
+        <div class="modal-body">        
+            <div class="card">
+                <div class="card-body scrollbar scrollbar-black bordered-black square thin">
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label for="id" class="col-md-12 col-form-label text-md-right">Area Id</label>
+                            <div class="col-md-12">
+                                <input type="text" id="id" class="form-control" name="id" formControlName="id">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label for="id" class="col-md-12 col-form-label text-md-right">Area Name</label>
+                            <div class="col-md-12">
+                                <input type="text" id="id" class="form-control" name="name" formControlName="name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" [attr.disabled]="newAreaForm.valid===true">Submit</button>
+            <button class="btn btn-danger" (click)="modalRef?.hide()">Cancel</button>
+        </div>
+    </form>
+  </ng-template> -->
