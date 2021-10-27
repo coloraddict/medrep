@@ -4,5 +4,5 @@
 </div>
 <mat-dialog-actions align="end">
     <button mat-button matDialogClose class="btn btn-primary">Ok</button>&nbsp;
-    <button mat-button matDialogClose class="btn btn-primary">Cancel</button>
+    <button mat-button matDialogClose class="btn btn-primary" *ngIf="data.type!=='single'">Cancel</button>
 </mat-dialog-actions>

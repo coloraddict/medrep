@@ -19,7 +19,7 @@ export class DataService {
   }
 
   updateArea(payload: any){
-    return this.http.post(this.baseUrl + "add", payload);
+    return this.http.post(this.baseUrl + "update", payload);
   }
 
   deleteArea(id: any) {

@@ -34,6 +34,10 @@ export class ListComponent implements OnInit {
   areaId: string = '';
   areaName: string = '';
 
+  transaction: string = '';
+
+  currentRecord: any;
+
 
   constructor(private dataService: DataService, private fb: FormBuilder, private modalService: BsModalService, public dialog: MatDialog) { 
     this.addNewAreaForm = this.fb.group({
@@ -54,6 +58,7 @@ export class ListComponent implements OnInit {
     this.dataService.getArea().subscribe(res => {
       this.area_list = res;
       this.dataSource = res;
+      this.showConfirmationMessage();
     });   
   }
 
@@ -61,17 +66,10 @@ export class ListComponent implements OnInit {
     console.log(this.newAreaForm.value);
   }
 
-  onUpdateArea(index: any){
-    this.editClicked = true;
-    this.listAreas.push(this.newArea(this.area_list[index]));
-  }
-
   onDelete(index: any){
+    this.transaction = 'delete';
+    this.currentRecord = this.area_list[index];
     this.dataService.deleteArea(this.area_list[index].id).subscribe(res => {
-      this.alerts = [{
-        type: 'success',
-        msg: `Area deleted successfully`
-      }];
       this.loadAreaList();
     })
   }
@@ -88,38 +86,24 @@ export class ListComponent implements OnInit {
   }
 
   submitNewArea(){    
-    this.addClicked=true;
-    if(this.addClicked){
-      this.addClicked = false;
+    if(this.transaction === 'add'){
         this.dataService.addArea(this.newAreaForm.value).subscribe(res => {
           let response = JSON.parse(JSON.stringify(res));
           if(response.recordExists){
-            const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
-              data: {
-                title: 'Confirm Dialog',
-                message: 'Area with ID: ' + this.newAreaForm.value.id +  ' already exists'
-              }
+            this.openConfirmationDialog({
+              title: 'Confirm Dialog', 
+              message: 'Area ' + this.newAreaForm.value.name + ' with ID: ' + this.newAreaForm.value.id +  ' already exists', 
+              action: 'exist'
             });
           }else{
-            const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
-              data: {
-                title: 'Confirm Dialog',
-                message: 'Area with ID: ' + this.newAreaForm.value.id +  ' added successfully'
-              }
-            });
+            this.loadAreaList(); 
           }
-          this.loadAreaList();
         })
-    } else if(this.editClicked){
-      this.editClicked = false;
-      this.dataService.updateArea(this.newAreaForm.value).subscribe(res => {
-        this.alerts = [{
-          type: 'success',
-          msg: `Area updated successfully`
-        }];
-        this.loadAreaList();
+      } else if(this.transaction === 'update'){
+        this.dataService.updateArea(this.newAreaForm.value).subscribe(res => {
+          this.loadAreaList();
       })
-    }   
+    }
   }
 
   onClosed(dismissedAlert: any): void {
@@ -127,7 +111,52 @@ export class ListComponent implements OnInit {
   }
 
   openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+    this.transaction = 'add';
     this.dialog.open(templateRef);
     this.newAreaForm.reset();
+  }
+
+  openUpdateDialogWithTemplateRef(templateRef: TemplateRef<any>, index: number) {
+    this.transaction = 'update';
+    this.newAreaForm = new FormGroup({
+      id: new FormControl(this.area_list[index].id),
+      name: new FormControl(this.area_list[index].name)
+    })
+    this.dialog.open(templateRef);
+  }
+
+  openConfirmationDialog(messageObj: any){
+    messageObj.type = 'single'
+    if(messageObj.action === 'add'){
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {data: messageObj });
+    } else if(messageObj.action === 'exist'){
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {data: messageObj });
+    } else if(messageObj.action === 'delete'){
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {data: messageObj });
+    } else if(messageObj.action === 'update'){
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {data: messageObj });
+    }
+  }
+
+  showConfirmationMessage(){
+    if(this.transaction === 'add'){
+      this.openConfirmationDialog({
+        title: 'Confirm Dialog', 
+        message: 'Area ' + this.newAreaForm.value.name + ' with ID: ' + this.newAreaForm.value.id +  ' added successfully', 
+        action: 'add'
+      });
+    }else if(this.transaction === 'update'){
+      this.openConfirmationDialog({
+        title: 'Confirm Dialog', 
+        message: 'Area ' + this.newAreaForm.value.name + ' with ID: ' + this.newAreaForm.value.id +  ' updated successfully', 
+        action: 'update'
+      });
+    }else if(this.transaction === 'delete'){
+      this.openConfirmationDialog({
+        title: 'Confirm Dialog', 
+        message: 'Area ' + this.currentRecord.name + ' with ID: ' + this.currentRecord.id +  ' deleted successfully', 
+        action: 'delete',
+      });
+    }
   }
 }
