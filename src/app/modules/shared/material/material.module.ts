@@ -5,12 +5,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 const materialModules = [
   MatCardModule,
   MatTableModule,
   MatPaginatorModule,
-  MatDialogModule
+  MatDialogModule,
+  FormsModule,
+  ReactiveFormsModule,
+  MatInputModule
 ]
 
 @NgModule({

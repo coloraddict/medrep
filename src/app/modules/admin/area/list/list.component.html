@@ -22,12 +22,9 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search">
-                                <div class="input-group-append">
-                                <button class="btn btn-primary" style="height: 100%;" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                                </div>
+                                <mat-form-field class="full-width-input">
+                                    <input matInput class="form-control" (keyup)="applyFilter($event)" placeholder="Filter">
+                                </mat-form-field>
                             </div>
                         </div>
                     </div>

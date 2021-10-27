@@ -5,6 +5,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/components/shared/confirm-dialog/confirm-dialog.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-list',
@@ -26,7 +27,7 @@ export class ListComponent implements OnInit {
     ignoreBackdropClick: true,
     class: 'modal-doctor'
   };
-  dataSource: any;
+  dataSource: MatTableDataSource<AreaModel>;
   displayedColumns: string[] = ['id', 'name', 'actions'];
 
   newAreaForm: FormGroup;
@@ -40,6 +41,8 @@ export class ListComponent implements OnInit {
 
 
   constructor(private dataService: DataService, private fb: FormBuilder, private modalService: BsModalService, public dialog: MatDialog) { 
+    const users: AreaModel[] =  [];
+    this.dataSource = new MatTableDataSource(users);
     this.addNewAreaForm = this.fb.group({
       listAreas: this.fb.array([])
     })
@@ -57,7 +60,7 @@ export class ListComponent implements OnInit {
   loadAreaList(){
     this.dataService.getArea().subscribe(res => {
       this.area_list = res;
-      this.dataSource = res;
+      this.dataSource = new MatTableDataSource(res);
       this.showConfirmationMessage();
     });   
   }
@@ -159,4 +162,17 @@ export class ListComponent implements OnInit {
       });
     }
   }
+
+  applyFilter(event: any) {
+    console.log(event.target.value);
+    let filterValue = event.target.value.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
+}
+
+
+export interface AreaModel {
+  id: string;
+  name: string;
 }

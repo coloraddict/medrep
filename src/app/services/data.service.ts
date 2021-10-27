@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AreaModel } from '../modules/admin/area/list/list.component'; 
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getArea(){
-    return this.http.get(this.baseUrl + "area");
+    return this.http.get<AreaModel[]>(this.baseUrl + "area");
   }
 
   addArea(payload: any){

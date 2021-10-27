@@ -21,3 +21,7 @@ h2 {
     top: 0;
     right: 0;    
 }
+
+.full-width-input.mat-form-field{
+    width: 100%;
+}
