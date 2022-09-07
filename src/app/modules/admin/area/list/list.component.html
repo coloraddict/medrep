@@ -18,20 +18,13 @@
         <p style="line-height: 10px;"></p>
         <mat-card class="table-holder">
             <mat-card-content>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <div class="input-group">
-                                <mat-form-field class="full-width-input">
-                                    <input matInput class="form-control" (keyup)="applyFilter($event)" placeholder="Filter">
-                                </mat-form-field>
-                            </div>
-                        </div>
-                    </div>
-                </div>        
-                <p></p>
-                <div class="row">
-                    <div class="col-md-12">
+                <div class="input-group">
+                    <mat-form-field class="full-width-input">
+                        <input matInput class="form-control" (keyup)="applyFilter($event)" placeholder="Filter">
+                    </mat-form-field>
+                </div>     
+                <!-- <div class="row"> -->
+                    <!-- <div class="col-md-12"> -->
                         <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
                         <div class="example-container mat-elevation-z0">
                             <table mat-table [dataSource]="dataSource">
@@ -60,8 +53,8 @@
                             
                             </div>
                             
-                    </div>
-                </div>
+                    <!-- </div> -->
+                <!-- </div> -->
             </mat-card-content>
         </mat-card>
         <form [formGroup]="addNewAreaForm">

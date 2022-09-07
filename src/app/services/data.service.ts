@@ -7,24 +7,24 @@ import { AreaModel } from '../modules/admin/area/list/list.component';
 })
 export class DataService {
 
-  baseUrl = "http://192.168.1.203:8080/";
+  baseUrl = "http://192.168.1.204:8080/";
 
   constructor(private http: HttpClient) { }
 
   getArea(){
-    return this.http.get<AreaModel[]>(this.baseUrl + "area");
+    return this.http.get<AreaModel[]>(this.baseUrl + "areas");
   }
 
   addArea(payload: any){
-    return this.http.post(this.baseUrl + "add", payload);
+    return this.http.post(this.baseUrl + "areas", payload);
   }
 
   updateArea(payload: any){
-    return this.http.post(this.baseUrl + "update", payload);
+    return this.http.put(this.baseUrl + "areas/" + payload._id, payload);
   }
 
   deleteArea(id: any) {
-    return this.http.get(this.baseUrl + "delete?id=" + id);
+    return this.http.delete(this.baseUrl + "areas/" + id);
   }
 
 

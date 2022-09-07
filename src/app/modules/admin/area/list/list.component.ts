@@ -72,7 +72,7 @@ export class ListComponent implements OnInit {
   onDelete(index: any){
     this.transaction = 'delete';
     this.currentRecord = this.area_list[index];
-    this.dataService.deleteArea(this.area_list[index].id).subscribe(res => {
+    this.dataService.deleteArea(this.area_list[index]._id).subscribe(res => {
       this.loadAreaList();
     })
   }
@@ -99,6 +99,7 @@ export class ListComponent implements OnInit {
               action: 'exist'
             });
           }else{
+            alert("here")
             this.loadAreaList(); 
           }
         })
@@ -122,6 +123,7 @@ export class ListComponent implements OnInit {
   openUpdateDialogWithTemplateRef(templateRef: TemplateRef<any>, index: number) {
     this.transaction = 'update';
     this.newAreaForm = new FormGroup({
+      _id: new FormControl(this.area_list[index]._id),
       id: new FormControl(this.area_list[index].id),
       name: new FormControl(this.area_list[index].name)
     })
